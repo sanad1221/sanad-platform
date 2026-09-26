@@ -383,7 +383,7 @@
             margin-top: 5px;
         }
 
-        /* 4. لوحة التحكم */
+        /* 4. لوحة التحكم - أزرار نيون متوهجة وفاخرة */
         .dashboard-body {
             margin: auto 0;
         }
@@ -413,34 +413,59 @@
         .menu-grid {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .menu-card {
-            background: rgba(18, 18, 24, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 14px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(20, 18, 12, 0.95), rgba(12, 11, 15, 0.95));
+            border: 1.5px solid rgba(234, 179, 8, 0.4);
+            padding: 15px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.15), inset 0 0 10px rgba(234, 179, 8, 0.05);
+            animation: neonPulse 3s infinite alternate;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                border-color: rgba(234, 179, 8, 0.3);
+                box-shadow: 0 0 10px rgba(234, 179, 8, 0.15);
+            }
+            100% {
+                border-color: rgba(250, 204, 21, 0.85);
+                box-shadow: 0 0 25px rgba(250, 204, 21, 0.4), inset 0 0 12px rgba(250, 204, 21, 0.2);
+            }
+        }
+
+        .menu-card:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, rgba(30, 26, 15, 0.95), rgba(18, 16, 22, 0.95));
+            border-color: #facc15;
+            box-shadow: 0 0 30px rgba(250, 204, 21, 0.6), inset 0 0 15px rgba(250, 204, 21, 0.3);
         }
 
         .menu-card-info h3 {
-            font-size: 13px;
-            color: #fff;
+            font-size: 14px;
+            color: #facc15;
             margin-bottom: 3px;
-            font-weight: 700;
+            font-weight: 800;
+            text-shadow: 0 0 8px rgba(234, 179, 8, 0.4);
         }
 
         .menu-card-info p {
             font-size: 10.5px;
-            color: #9ca3af;
+            color: #b4b8c1;
         }
 
         .menu-icon {
-            font-size: 18px;
+            font-size: 22px;
+            filter: drop-shadow(0 0 8px rgba(234, 179, 8, 0.6));
         }
 
         /* 5. شاشة المحاضرات */
@@ -645,7 +670,7 @@
             <div class="bottom-line"></div>
         </div>
 
-        <!-- لوحة التحكم -->
+        <!-- لوحة التحكم (الأزرار النيون المنورة) -->
         <div id="dashboardScreen" class="screen">
             <div class="top-status-bar">
                 <div class="logo-circle" style="cursor: pointer;" onclick="logout()" title="خروج">🚪</div>
@@ -747,7 +772,6 @@
             const container = document.getElementById('lecturesContainer');
             container.innerHTML = "";
 
-            // تصفية الحصص بحيث تعرض فقط الحصص الخاصة بمرحلة الطالب المختارة
             const filteredLectures = lecturesData.filter(item => item.grade === currentStudentGrade);
 
             if (filteredLectures.length === 0) {
@@ -840,12 +864,12 @@
             } else if(targetScreenId === 'dashboard') {
                 document.getElementById('dashboardScreen').classList.add('active');
             } else if(targetScreenId === 'lectures') {
-                loadLecturesForStudent(); // تحميل حصص المرحلة المحددة فقط عند فتح الشاشة
+                loadLecturesForStudent();
                 document.getElementById('lecturesScreen').classList.add('active');
             }
         }
 
-    function handleLogin(event) {
+        function handleLogin(event) {
             event.preventDefault();
             const name = document.getElementById('studentName').value;
             if(name.trim() !== "") {
