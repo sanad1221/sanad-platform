@@ -468,11 +468,11 @@
             filter: drop-shadow(0 0 8px rgba(234, 179, 8, 0.6));
         }
 
-        /* 5. شاشة المحاضرات */
+        /* 5. شاشة المحاضرات والبابل شيت */
         .lectures-body {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 16px;
             overflow-y: auto;
             flex-grow: 1;
             padding-bottom: 10px;
@@ -488,10 +488,10 @@
         }
 
         .lecture-item-box {
-            background: rgba(18, 18, 24, 0.6);
-            border: 1px solid rgba(234, 179, 8, 0.2);
-            border-radius: 10px;
-            padding: 10px;
+            background: rgba(18, 18, 24, 0.7);
+            border: 1px solid rgba(234, 179, 8, 0.25);
+            border-radius: 12px;
+            padding: 12px;
             margin-bottom: 10px;
         }
 
@@ -504,7 +504,7 @@
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid rgba(234, 179, 8, 0.3);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .video-container iframe {
@@ -519,7 +519,7 @@
         .video-info-box {
             font-size: 11px;
             color: #bbb;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             background: rgba(255, 255, 255, 0.03);
             padding: 6px 8px;
             border-radius: 6px;
@@ -535,7 +535,7 @@
             justify-content: space-between;
             text-decoration: none;
             transition: 0.2s;
-            margin-top: 4px;
+            margin-bottom: 12px;
         }
 
         .pdf-card:hover {
@@ -563,6 +563,86 @@
             border-radius: 6px;
             font-size: 10px;
             font-weight: bold;
+        }
+
+        /* تصميم البابل شيت الفخم */
+        .bubble-sheet-box {
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px dashed rgba(234, 179, 8, 0.4);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .bubble-title {
+            font-size: 12px;
+            color: #facc15;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-align: center;
+            border-bottom: 1px solid rgba(234, 179, 8, 0.2);
+            padding-bottom: 6px;
+        }
+
+        .question-item {
+            margin-bottom: 12px;
+            font-size: 11px;
+        }
+
+        .question-text {
+            color: #fff;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 8px;
+            border-radius: 6px;
+            color: #ccc;
+            font-size: 10.5px;
+            cursor: pointer;
+            text-align: right;
+            transition: 0.2s;
+        }
+
+        .option-btn.selected {
+            background: rgba(234, 179, 8, 0.2);
+            border-color: #facc15;
+            color: #facc15;
+            box-shadow: 0 0 8px rgba(234, 179, 8, 0.4);
+            font-weight: bold;
+        }
+
+        .submit-quiz-btn {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #facc15, #ca8a04);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 11.5px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.3);
+        }
+
+        .quiz-result-box {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            display: none;
         }
 
         .no-lectures {
@@ -670,7 +750,7 @@
             <div class="bottom-line"></div>
         </div>
 
-        <!-- لوحة التحكم (الأزرار النيون المنورة) -->
+        <!-- لوحة التحكم -->
         <div id="dashboardScreen" class="screen">
             <div class="top-status-bar">
                 <div class="logo-circle" style="cursor: pointer;" onclick="logout()" title="خروج">🚪</div>
@@ -692,12 +772,12 @@
                     <div class="menu-card" onclick="navigate('lectures')">
                         <div class="menu-card-info">
                             <h3>المحاضرات والشروحات</h3>
-                            <p>شاهد الحصص والدروس المرئية بوضوح تام</p>
+                            <p>شاهد الحصص والدروس مع واجب البابل شيت</p>
                         </div>
                         <div class="menu-icon">📚</div>
                     </div>
 
-                    <div class="menu-card" onclick="alert('جاري فتح ملفات الواجبات المنزلية...')">
+                    <div class="menu-card" onclick="alert('جاري فتح ملفات الواجبات الإضافية...')">
                         <div class="menu-card-info">
                             <h3>الواجبات المنزلية</h3>
                             <p>تابع وحل التمارين والتدريبات الأسبوعية</p>
@@ -705,10 +785,10 @@
                         <div class="menu-icon">📝</div>
                     </div>
 
-                    <div class="menu-card" onclick="alert('جاري تجهيز الاختبارات القصيرة (Quizzes)...')">
+                    <div class="menu-card" onclick="alert('جاري تجهيز الاختبارات الشاملة (Quizzes)...')">
                         <div class="menu-card-info">
-                            <h3>الاختبارات (Quizzes)</h3>
-                            <p>اختبر مستواك واكشف مدى استيعابك للدروس</p>
+                            <h3>الاختبارات الشاملة</h3>
+                            <p>اختبر مستواك واكشف مدى استيعابك للمنهج</p>
                         </div>
                         <div class="menu-icon">⚡</div>
                     </div>
@@ -718,18 +798,18 @@
             <div class="bottom-line"></div>
         </div>
 
-        <!-- شاشة عرض المحاضرات مصنفة حسب المرحلة -->
+        <!-- شاشة عرض المحاضرات والواجبات -->
         <div id="lecturesScreen" class="screen">
             <div class="top-status-bar">
                 <div class="logo-circle" style="cursor: pointer;" onclick="navigate('dashboard')" title="رجوع">↩</div>
-                <div style="font-size: 10px; color: #eab308; font-weight: bold;" id="lectureHeaderTitle">المحاضرات</div>
+                <div style="font-size: 10px; color: #eab308; font-weight: bold;" id="lectureHeaderTitle">المحاضرات والواجب</div>
                 <div class="nav-arrows">
                     <button class="nav-btn" onclick="navigate('dashboard')" title="لوحة التحكم">⌂</button>
                 </div>
             </div>
 
             <div class="lectures-body" id="lecturesContainer">
-                <!-- الحصص تظهر هنا أوتوماتيكياً حسب اختيار الطالب -->
+                <!-- يتم توليد الحصص والأسئلة هنا ديناميكياً -->
             </div>
 
             <div class="bottom-line"></div>
@@ -738,35 +818,70 @@
     </div>
 
     <script>
-        // قائمة الحصص مع تحديد المرحلة الدراسية لكل حصصة (grade)
+        // مصفوفة الحصص مع أسئلة البابل شيت التفاعلية لكل درس
         const lecturesData = [
             {
+                id: 1,
                 grade: "أولى ثانوي",
-                title: "📺 الحصة التجريبية: أساسيات الرياضيات",
+                title: "📺 الحصة الأولى: أساسيات الرياضيات",
                 videoEmbed: "https://www.youtube.com/embed/Tk8mkpZjdHA",
-                desc: "فيديو تجريبي خاص بمنهج أولى ثانوي.",
-                pdfTitle: "ملف شرح أولى ثانوي (PDF)",
-                pdfLink: "#"
+                desc: "شرح تفصيلي لمنهج أولى ثانوي.",
+                pdfTitle: "ملف الشرح والواجب (PDF)",
+                pdfLink: "#",
+                questions: [
+                    {
+                        qId: 1,
+                        text: "1. مجموع قياسات زوايا المثلث الداخلة يساوي:",
+                        options: ["90 درجة", "180 درجة", "360 درجة", "270 درجة"],
+                        correct: 1
+                    },
+                    {
+                        qId: 2,
+                        text: "2. إذا كان س + 3 = 7، فإن قيمة س تساوي:",
+                        options: ["2", "3", "4", "5"],
+                        correct: 2
+                    }
+                ]
             },
             {
+                id: 2,
                 grade: "ثانية ثانوي",
-                title: "📺 الحصة التجريبية: حساب المثلثات",
+                title: "📺 الحصة الأولى: حساب المثلثات",
                 videoEmbed: "https://www.youtube.com/embed/Tk8mkpZjdHA",
-                desc: "فيديو تجريبي خاص بمنهج ثانية ثانوي.",
-                pdfTitle: "ملف شرح ثانية ثانوي (PDF)",
-                pdfLink: "#"
+                desc: "شرح حصة حساب المثلثات لثانية ثانوي.",
+                pdfTitle: "ملف الشرح والواجب (PDF)",
+                pdfLink: "#",
+                questions: [
+                    {
+                        qId: 1,
+                        text: "1. جا(90 - س) تساوي:",
+                        options: ["جتا س", "ظا س", "-جا س", "-جتا س"],
+                        correct: 0
+                    }
+                ]
             },
             {
+                id: 3,
                 grade: "ثالثة ثانوي",
-                title: "📺 الحصة التجريبية: التفاضل والتكامل",
+                title: "📺 الحصة الأولى: التفاضل والتكامل",
                 videoEmbed: "https://www.youtube.com/embed/Tk8mkpZjdHA",
-                desc: "فيديو تجريبي خاص بمنهج ثالثة ثانوي.",
-                pdfTitle: "ملف شرح ثالثة ثانوي (PDF)",
-                pdfLink: "#"
+                desc: "مراجعة وأساسيات التفاضل للثانوية العامة.",
+                pdfTitle: "ملف الشرح والواجب (PDF)",
+                pdfLink: "#",
+                questions: [
+                    {
+                        qId: 1,
+                        text: "1. مشتقة الدالة د(س) = س³ هي:",
+                        options: ["س²", "3س²", "3س", "6س"],
+                        correct: 1
+                    }
+                ]
             }
         ];
 
         let currentStudentGrade = '';
+        // تخزين إجابات الطالب المؤقتة
+        let studentAnswers = {};
 
         function loadLecturesForStudent() {
             const container = document.getElementById('lecturesContainer');
@@ -775,31 +890,105 @@
             const filteredLectures = lecturesData.filter(item => item.grade === currentStudentGrade);
 
             if (filteredLectures.length === 0) {
-                container.innerHTML = `<div class="no-lectures">لا توجد محاضرات منشورة لهذة المرحلة حتى الآن، انتظرنا قريباً! 📚</div>`;
+                container.innerHTML = `<div class="no-lectures">لا توجد محاضرات أو واجبات منشورة لهذه المرحلة حتى الآن، انتظرنا قريباً! 📚</div>`;
                 return;
             }
 
-            filteredLectures.forEach((item) => {
+            filteredLectures.forEach((lecture) => {
                 const box = document.createElement('div');
                 box.className = 'lecture-item-box';
+                
+                // بناء هيكل أسئلة البابل شيت داخل الحصة
+                let questionsHTML = '';
+                lecture.questions.forEach((q, qIndex) => {
+                    let optionsHTML = '';
+                    q.options.forEach((opt, optIndex) => {
+                        optionsHTML += `
+                            <button type="button" class="option-btn" onclick="selectOption(${lecture.id}, ${q.qId}, ${optIndex}, this)">
+                                ${opt}
+                            </button>
+                        `;
+                    });
+
+                    questionsHTML += `
+                        <div class="question-item" data-q="${q.qId}">
+                            <div class="question-text">${q.text}</div>
+                            <div class="options-grid">${optionsHTML}</div>
+                        </div>
+                    `;
+                });
+
                 box.innerHTML = `
-                    <div class="section-title">${item.title}</div>
+                    <div class="section-title">${lecture.title}</div>
                     <div class="video-container">
-                        <iframe src="${item.videoEmbed}" title="شرح الحصة" allowfullscreen></iframe>
+                        <iframe src="${lecture.videoEmbed}" title="شرح الحصة" allowfullscreen></iframe>
                     </div>
                     <div class="video-info-box">
-                        <strong>شرح الأستاذ أحمد:</strong> ${item.desc}
+                        <strong>شرح الأستاذ أحمد:</strong> ${lecture.desc}
                     </div>
-                    <a href="${item.pdfLink}" target="_blank" class="pdf-card">
+                    <a href="${lecture.pdfLink}" target="_blank" class="pdf-card">
                         <div class="pdf-info">
-                           <h4>${item.pdfTitle}</h4>
-                           <p>انقر للتحميل المباشر أو العرض</p>
+                           <h4>${lecture.pdfTitle}</h4>
+                           <p>انقر للتحميل المباشر للحل من كتابك</p>
                         </div>
                         <div class="pdf-action-btn">تحميل ⬇</div>
                     </a>
+
+                    <!-- نظام البابل شيت التفاعلي تحت الفيديو -->
+                    <div class="bubble-sheet-box">
+                        <div class="bubble-title">📝 واجب البابل شيت التفاعلي</div>
+                        ${questionsHTML}
+                        <button class="submit-quiz-btn" onclick="submitQuiz(${lecture.id})">تصحيح الواجب الفوري ⚡</button>
+                        <div class="quiz-result-box" id="resultBox-${lecture.id}"></div>
+                    </div>
                 `;
                 container.appendChild(box);
             });
+        }
+
+        // تسجيل اختيار الطالب للإجابة
+        function selectOption(lectureId, qId, optIndex, btnElement) {
+            // إلغاء تحديد باقي الأزرار لنفس السؤال
+            const parentGrid = btnElement.parentElement;
+            parentGrid.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            
+            // تحديد الزر الحالي
+            btnElement.classList.add('selected');
+
+            // حفظ الإجابة
+            if (!studentAnswers[lectureId]) {
+                studentAnswers[lectureId] = {};
+            }
+            studentAnswers[lectureId][qId] = optIndex;
+        }
+
+        // تصحيح الواجب أوتوماتيكياً
+        function submitQuiz(lectureId) {
+            const lecture = lecturesData.find(l => l.id === lectureId);
+            const userAns = studentAnswers[lectureId] || {};
+            let score = 0;
+            let total = lecture.questions.length;
+
+            lecture.questions.forEach(q => {
+                if (userAns[q.qId] === q.correct) {
+                    score++;
+                }
+            });
+
+            const resultBox = document.getElementById(`resultBox-${lectureId}`);
+            resultBox.style.display = 'block';
+            
+            if (score === total) {
+                resultBox.style.background = 'rgba(34, 197, 94, 0.2)';
+                resultBox.style.border = '1px solid #22c55e';
+                resultBox.style.color = '#4ade80';
+                resultBox.innerHTML = `🎉 ممتاز جداً يا بطل! الدرجة النهائية: ${score} / ${total}`;
+            } else {
+                resultBox.style.background = 'rgba(234, 179, 8, 0.15)';
+                resultBox.style.border = '1px solid #facc15';
+                resultBox.style.color = '#facc15';
+                resultBox.innerHTML = `👍 أداء جيد! درجتك: ${score} من ${total}، راجع الخطأ وكرر المحاولة.`;
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -887,6 +1076,7 @@
             document.getElementById('studentPhone').value = '';
             document.querySelectorAll('.grade-btn').forEach(btn => btn.classList.remove('selected'));
             currentStudentGrade = '';
+            studentAnswers = {};
         }
 
         function updateTime() {
