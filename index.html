@@ -443,7 +443,7 @@
             font-size: 18px;
         }
 
-        /* 5. شاشة المحاضرات الديناميكية المسحوبة من جيت هب */
+        /* 5. شاشة المحاضرات */
         .lectures-body {
             display: flex;
             flex-direction: column;
@@ -538,13 +538,6 @@
             border-radius: 6px;
             font-size: 10px;
             font-weight: bold;
-        }
-
-        .loading-text {
-            text-align: center;
-            color: #facc15;
-            font-size: 12px;
-            padding: 20px;
         }
 
         .bottom-line {
@@ -693,7 +686,7 @@
             <div class="bottom-line"></div>
         </div>
 
-        <!-- شاشة عرض المحاضرات المسحوبة من جيت هب -->
+        <!-- شاشة عرض المحاضرات -->
         <div id="lecturesScreen" class="screen">
             <div class="top-status-bar">
                 <div class="logo-circle" style="cursor: pointer;" onclick="navigate('dashboard')" title="رجوع">↩</div>
@@ -704,7 +697,7 @@
             </div>
 
             <div class="lectures-body" id="lecturesContainer">
-                <div class="loading-text">جاري تحميل الحصص من السيرفر... ⏳</div>
+                <!-- يتم عرض الحصص هنا مباشرة -->
             </div>
 
             <div class="bottom-line"></div>
@@ -713,45 +706,46 @@
     </div>
 
     <script>
-        // تم ربط رابط جيت هب المباشر الخاص بك بنجاح
-        const jsonUrl = "https://raw.githubusercontent.com/sanad121/sanad-platform/main/lectures.json";
-
-        async function fetchLectures() {
-            const container = document.getElementById('lecturesContainer');
-            try {
-                const response = await fetch(jsonUrl);
-                const lecturesData = await response.json();
-                
-                container.innerHTML = ""; 
-
-                lecturesData.forEach((item) => {
-                    const box = document.createElement('div');
-                    box.className = 'lecture-item-box';
-                    box.innerHTML = `
-                        <div class="section-title">${item.title}</div>
-                        <div class="video-container">
-                            <iframe src="${item.videoEmbed}" title="شرح الحصة" allowfullscreen></iframe>
-                        </div>
-                        <div class="video-info-box">
-                            <strong>شرح الأستاذ أحمد:</strong> ${item.desc}
-                        </div>
-                        <a href="${item.pdfLink}" target="_blank" class="pdf-card">
-                            <div class="pdf-info">
-                               <h4>${item.pdfTitle}</h4>
-                               <p>انقر للتحميل المباشر أو العرض</p>
-                            </div>
-                            <div class="pdf-action-btn">تحميل ⬇</div>
-                        </a>
-                    `;
-                    container.appendChild(box);
-                });
-            } catch (error) {
-                container.innerHTML = `<div class="loading-text" style="color:#ef4444;">تعذر تحميل الحصص، تأكد من اتصال الإنترنت!</div>`;
+        // مصفوفة الحصص المضمنة مباشرة بدون مشاكل شبكة
+        const lecturesData = [
+            {
+                title: "📺 الحصة التجريبية: اختبار المنصة",
+                videoEmbed: "https://www.youtube.com/embed/Tk8mkpZjdHA",
+                desc: "فيديو تجريبي للتأكد من عمل العرض والتنسيق بكفاءة وسلاسة تامة.",
+                pdfTitle: "ملف الشرح التجريبي (PDF)",
+                pdfLink: "#"
             }
+        ];
+
+        function loadLectures() {
+            const container = document.getElementById('lecturesContainer');
+            container.innerHTML = "";
+
+            lecturesData.forEach((item) => {
+                const box = document.createElement('div');
+                box.className = 'lecture-item-box';
+                box.innerHTML = `
+                    <div class="section-title">${item.title}</div>
+                    <div class="video-container">
+                        <iframe src="${item.videoEmbed}" title="شرح الحصة" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info-box">
+                        <strong>شرح الأستاذ أحمد:</strong> ${item.desc}
+                    </div>
+                    <a href="${item.pdfLink}" target="_blank" class="pdf-card">
+                        <div class="pdf-info">
+                           <h4>${item.pdfTitle}</h4>
+                           <p>انقر للتحميل المباشر أو العرض</p>
+                        </div>
+                        <div class="pdf-action-btn">تحميل ⬇</div>
+                    </a>
+                `;
+                container.appendChild(box);
+            });
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            fetchLectures();
+            loadLectures();
             typeLogo();
             setTimeout(() => {
                 document.getElementById('welcomeScreen').classList.add('hide');
@@ -829,7 +823,7 @@
 
         function logout() {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('mainScreen').classList.add('active');
+            document.getElementById('mainSiteScreen').classList.add('active');
             document.getElementById('studentName').value = '';
             document.getElementById('studentPhone').value = '';
             document.querySelectorAll('.grade-btn').forEach(btn => btn.classList.remove('selected'));
