@@ -540,6 +540,13 @@
             font-weight: bold;
         }
 
+        .no-lectures {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 12px;
+            padding: 30px 10px;
+        }
+
         .bottom-line {
             width: 70px;
             height: 3px;
@@ -686,18 +693,18 @@
             <div class="bottom-line"></div>
         </div>
 
-        <!-- شاشة عرض المحاضرات -->
+        <!-- شاشة عرض المحاضرات مصنفة حسب المرحلة -->
         <div id="lecturesScreen" class="screen">
             <div class="top-status-bar">
                 <div class="logo-circle" style="cursor: pointer;" onclick="navigate('dashboard')" title="رجوع">↩</div>
-                <div style="font-size: 10px; color: #eab308; font-weight: bold;">المحاضرات والملفات</div>
+                <div style="font-size: 10px; color: #eab308; font-weight: bold;" id="lectureHeaderTitle">المحاضرات</div>
                 <div class="nav-arrows">
                     <button class="nav-btn" onclick="navigate('dashboard')" title="لوحة التحكم">⌂</button>
                 </div>
             </div>
 
             <div class="lectures-body" id="lecturesContainer">
-                <!-- يتم عرض الحصص هنا مباشرة -->
+                <!-- الحصص تظهر هنا أوتوماتيكياً حسب اختيار الطالب -->
             </div>
 
             <div class="bottom-line"></div>
@@ -706,22 +713,49 @@
     </div>
 
     <script>
-        // مصفوفة الحصص المضمنة مباشرة بدون مشاكل شبكة
+        // قائمة الحصص مع تحديد المرحلة الدراسية لكل حصصة (grade)
         const lecturesData = [
             {
-                title: "📺 الحصة التجريبية: اختبار المنصة",
+                grade: "أولى ثانوي",
+                title: "📺 الحصة التجريبية: أساسيات الرياضيات",
                 videoEmbed: "https://www.youtube.com/embed/Tk8mkpZjdHA",
-                desc: "فيديو تجريبي للتأكد من عمل العرض والتنسيق بكفاءة وسلاسة تامة.",
-                pdfTitle: "ملف الشرح التجريبي (PDF)",
+                desc: "فيديو تجريبي خاص بمنهج أولى ثانوي.",
+                pdfTitle: "ملف شرح أولى ثانوي (PDF)",
+                pdfLink: "#"
+            },
+            {
+                grade: "ثانية ثانوي",
+                title: "📺 الحصة التجريبية: حساب المثلثات",
+                videoEmbed: "https://www.youtube.com/embed/Tk8mkpZjdHA",
+                desc: "فيديو تجريبي خاص بمنهج ثانية ثانوي.",
+                pdfTitle: "ملف شرح ثانية ثانوي (PDF)",
+                pdfLink: "#"
+            },
+            {
+                grade: "ثالثة ثانوي",
+                title: "📺 الحصة التجريبية: التفاضل والتكامل",
+                videoEmbed: "https://www.youtube.com/embed/Tk8mkpZjdHA",
+                desc: "فيديو تجريبي خاص بمنهج ثالثة ثانوي.",
+                pdfTitle: "ملف شرح ثالثة ثانوي (PDF)",
                 pdfLink: "#"
             }
         ];
 
-        function loadLectures() {
+        let currentStudentGrade = '';
+
+        function loadLecturesForStudent() {
             const container = document.getElementById('lecturesContainer');
             container.innerHTML = "";
 
-            lecturesData.forEach((item) => {
+            // تصفية الحصص بحيث تعرض فقط الحصص الخاصة بمرحلة الطالب المختارة
+            const filteredLectures = lecturesData.filter(item => item.grade === currentStudentGrade);
+
+            if (filteredLectures.length === 0) {
+                container.innerHTML = `<div class="no-lectures">لا توجد محاضرات منشورة لهذة المرحلة حتى الآن، انتظرنا قريباً! 📚</div>`;
+                return;
+            }
+
+            filteredLectures.forEach((item) => {
                 const box = document.createElement('div');
                 box.className = 'lecture-item-box';
                 box.innerHTML = `
@@ -745,7 +779,6 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            loadLectures();
             typeLogo();
             setTimeout(() => {
                 document.getElementById('welcomeScreen').classList.add('hide');
@@ -792,6 +825,7 @@
             document.querySelectorAll('.grade-btn').forEach(btn => btn.classList.remove('selected'));
             element.classList.add('selected');
             selectedGradeText = gradeName;
+            currentStudentGrade = gradeName;
         }
 
         function navigate(targetScreenId) {
@@ -806,11 +840,12 @@
             } else if(targetScreenId === 'dashboard') {
                 document.getElementById('dashboardScreen').classList.add('active');
             } else if(targetScreenId === 'lectures') {
+                loadLecturesForStudent(); // تحميل حصص المرحلة المحددة فقط عند فتح الشاشة
                 document.getElementById('lecturesScreen').classList.add('active');
             }
         }
 
-        function handleLogin(event) {
+    function handleLogin(event) {
             event.preventDefault();
             const name = document.getElementById('studentName').value;
             if(name.trim() !== "") {
@@ -823,10 +858,11 @@
 
         function logout() {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('mainSiteScreen').classList.add('active');
+            document.getElementById('mainScreen').classList.add('active');
             document.getElementById('studentName').value = '';
             document.getElementById('studentPhone').value = '';
             document.querySelectorAll('.grade-btn').forEach(btn => btn.classList.remove('selected'));
+            currentStudentGrade = '';
         }
 
         function updateTime() {
