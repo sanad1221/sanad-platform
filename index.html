@@ -26,7 +26,7 @@
             padding: 10px 0;
         }
 
-        /* خلفية فقاعات رموز الرياضيات (ظاهرة بكل قوة في الموبايل واللابتوب) */
+        /* خلفية فقاعات رموز الرياضيات المنتشرة في الوسط والجوانب */
         .math-bg {
             position: fixed;
             top: 0;
@@ -40,7 +40,7 @@
 
         .math-bubble {
             position: absolute;
-            background: radial-gradient(circle, rgba(234, 179, 8, 0.3) 0%, rgba(202, 138, 4, 0.1) 70%);
+            background: radial-gradient(circle, rgba(234, 179, 8, 0.32) 0%, rgba(202, 138, 4, 0.12) 70%);
             border: 1.5px solid rgba(234, 179, 8, 0.6);
             border-radius: 50%;
             display: flex;
@@ -189,18 +189,46 @@
             font-size: 11px;
         }
 
-        /* شريط التنبيهات الحي الذهبي */
-        .live-ticker {
+        /* شريط التنبيهات الحي الذهبي مع زر تعديل المستر */
+        .live-ticker-box {
             background: linear-gradient(90deg, rgba(234,179,8,0.15), rgba(202,138,4,0.3), rgba(234,179,8,0.15));
             border: 1px solid rgba(234,179,8,0.4);
-            padding: 8px 12px;
+            padding: 8px 10px;
             border-radius: 10px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 0 10px rgba(234, 179, 8, 0.2);
+        }
+
+        .live-ticker-text {
             font-size: 11px;
             color: #fef08a;
-            text-align: center;
-            margin-bottom: 12px;
             font-weight: 700;
-            box-shadow: 0 0 10px rgba(234, 179, 8, 0.2);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex-grow: 1;
+            padding-left: 6px;
+        }
+
+        .edit-announcement-btn {
+            background: rgba(234, 179, 8, 0.3);
+            border: 1px solid #facc15;
+            color: #facc15;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: 0.2s;
+        }
+
+        .edit-announcement-btn:hover {
+            background: #facc15;
+            color: #000;
         }
 
         /* واجهة الاستقبال */
@@ -677,7 +705,7 @@
             margin-top: 5px;
         }
 
-        /* نافذة النتيجة المنبثقة الفخمة بالإيموجي */
+        /* نافذة النتيجة المنبثقة بالإيموجي */
         .result-popup-overlay {
             position: fixed;
             top: 0;
@@ -784,7 +812,7 @@
             <div></div>
             <div>
                 <div class="welcome-badge-box">✨ SANAD PLATFORM</div>
-                <div class="welcome-title-main" id="typedLogo">Sanad</div>
+                <div class="welcome-title-main">Sanad</div>
             </div>
             <div><div class="bottom-line"></div></div>
         </div>
@@ -800,9 +828,10 @@
                 </div>
             </div>
 
-            <!-- شريط التنبيهات الحي الذهبي -->
-            <div class="live-ticker">
-                📢 أهلاً بكم في منصة مستر أحمد عبد العليم.. انتظروا أقوى مراجعات الرياضيات! 🔥
+            <!-- شريط التنبيهات الحي الذهبي مع زر تعديل خاص بالمستر -->
+            <div class="live-ticker-box">
+                <div class="live-ticker-text" id="announcementText">📢 أهلاً بكم في منصة مستر أحمد عبد العليم.. انتظروا أقوى مراجعات الرياضيات! 🔥</div>
+                <button class="edit-announcement-btn" onclick="editAnnouncement()">⚙️ تعديل</button>
             </div>
 
             <div class="hero-body">
@@ -976,6 +1005,20 @@
         let currentStudentGrade = '';
         let studentAnswers = {};
 
+        // وظيفة تعديل الإعلان لكلمة المرور 123123
+        function editAnnouncement() {
+            const password = prompt("أدخل كلمة مرور المستر لتعديل الإعلان:");
+            if (password === "123123") {
+                const newText = prompt("اكتب الإعلان الجديد للمنصة:", document.getElementById('announcementText').innerText);
+                if (newText !== null && newText.trim() !== "") {
+                    document.getElementById('announcementText').innerText = newText;
+                    alert("✅ تم تحديث الإعلان بنجاح لجميع الطلاب!");
+                }
+            } else if (password !== null) {
+                alert("❌ كلمة المرور غير صحيحة!");
+            }
+        }
+
         function loadLecturesForStudent() {
             const container = document.getElementById('lecturesContainer');
             container.innerHTML = "";
@@ -1068,21 +1111,22 @@
         function closeResultPopup() { document.getElementById('resultPopupOverlay').style.display = 'none'; }
 
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => { document.getElementById('welcomeScreen').classList.add('hide'); }, 3000);
+            setTimeout(() => { document.getElementById('welcomeScreen').classList.add('hide'); }, 2500);
         });
 
-        // توليد الفقاعات الرياضية الخلفية
+        // توليد الفقاعات الرياضية في الوسط والجوانب بالكامل
         const symbols = ['∫', '∑', 'π', '√', '∞', 'Δ', 'θ', 'ƒ(x)', 'sin', 'cos', '123', '±', 'x²', 'dy/dx'];
         const mathBg = document.getElementById('mathBg');
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 35; i++) {
             const bubble = document.createElement('div');
             bubble.className = 'math-bubble';
             bubble.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-            const size = Math.floor(Math.random() * 18) + 26;
+            const size = Math.floor(Math.random() * 20) + 24;
             bubble.style.width = size + 'px';
             bubble.style.height = size + 'px';
-            bubble.style.left = (Math.random() * 92) + '%';
-            bubble.style.animationDuration = (Math.random() * 5 + 4) + 's';
+            bubble.style.left = (Math.random() * 96) + '%';
+            bubble.style.top = (Math.random() * 90) + '%';
+            bubble.style.animationDuration = (Math.random() * 5 + 3) + 's';
             bubble.style.animationDelay = (Math.random() * 4) + 's';
             mathBg.appendChild(bubble);
         }
