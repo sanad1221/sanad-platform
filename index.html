@@ -26,13 +26,13 @@
             padding: 10px 0;
         }
 
-        /* خلفية فقاعات رموز الرياضيات (على الأطراف فقط) */
+        /* خلفية فقاعات رموز الرياضيات (ظاهرة بكل قوة في الموبايل واللابتوب) */
         .math-bg {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             pointer-events: none;
             z-index: 1;
             overflow: hidden;
@@ -40,49 +40,32 @@
 
         .math-bubble {
             position: absolute;
-            background: radial-gradient(circle, rgba(234, 179, 8, 0.18) 0%, rgba(202, 138, 4, 0.04) 70%);
-            border: 1px solid rgba(234, 179, 8, 0.3);
+            background: radial-gradient(circle, rgba(234, 179, 8, 0.3) 0%, rgba(202, 138, 4, 0.1) 70%);
+            border: 1.5px solid rgba(234, 179, 8, 0.6);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: rgba(250, 204, 21, 0.7);
+            color: #facc15;
             font-weight: 900;
-            box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
+            box-shadow: 0 0 20px rgba(234, 179, 8, 0.5);
             animation: floatBubble linear infinite;
         }
 
         @keyframes floatBubble {
-            0% { transform: translateY(105vh) scale(0.8); opacity: 0; }
-            20% { opacity: 0.7; }
-            80% { opacity: 0.7; }
-            100% { transform: translateY(-15vh) scale(1.2); opacity: 0; }
-        }
-
-        /* تأثير ظهور اسم M Ahmad عند اللمس */
-        .touch-effect {
-            position: fixed;
-            color: #facc15;
-            font-size: 15px;
-            font-weight: 900;
-            pointer-events: none;
-            z-index: 9999;
-            text-shadow: 0 0 12px rgba(250, 204, 21, 0.8);
-            animation: fadeUpTouch 0.9s ease forwards;
-        }
-
-        @keyframes fadeUpTouch {
-            0% { transform: translateY(0) scale(0.6); opacity: 1; }
-            100% { transform: translateY(-45px) scale(1.2); opacity: 0; }
+            0% { transform: translateY(105vh) scale(0.6); opacity: 0; }
+            20% { opacity: 0.9; }
+            80% { opacity: 0.9; }
+            100% { transform: translateY(-10vh) scale(1.3); opacity: 0; }
         }
 
         /* حاوية الهاتف المتكيفة تماماً */
         .phone-frame {
             width: 100%;
             max-width: 400px;
-            background: linear-gradient(135deg, rgba(15, 14, 19, 0.95) 0%, rgba(23, 18, 6, 0.95) 100%);
+            background: linear-gradient(135deg, rgba(15, 14, 19, 0.96) 0%, rgba(23, 18, 6, 0.96) 100%);
             backdrop-filter: blur(8px);
-            box-shadow: 0 0 45px rgba(0, 0, 0, 0.95);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.95);
             border-radius: 0;
             overflow: hidden;
             border: none;
@@ -98,7 +81,7 @@
         @media (min-width: 450px) {
             .phone-frame {
                 border-radius: 30px;
-                border: 2px solid rgba(234, 179, 8, 0.25);
+                border: 2px solid rgba(234, 179, 8, 0.3);
                 height: 820px;
             }
         }
@@ -111,13 +94,14 @@
             width: 100%;
             height: 100%;
             overflow-y: auto;
+            z-index: 5;
         }
 
         .screen.active {
             display: flex;
         }
 
-        /* 1. شاشة الترحيب الأولى */
+        /* شاشة الترحيب الأولى */
         #welcomeScreen {
             background-color: #050507;
             justify-content: center;
@@ -130,7 +114,6 @@
             height: 100%;
             z-index: 999;
             display: flex;
-            flex-direction: column;
             transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
@@ -141,36 +124,23 @@
         }
 
         .welcome-badge-box {
-            border: 1px solid rgba(234, 179, 8, 0.5);
-            padding: 6px 20px;
+            border: 1px solid rgba(234, 179, 8, 0.4);
+            padding: 6px 18px;
             border-radius: 30px;
             display: inline-block;
-            color: #facc15;
-            font-size: 12px;
-            letter-spacing: 3px;
-            background: rgba(234, 179, 8, 0.08);
-            margin-bottom: 15px;
-            box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
+            color: #eab308;
+            font-size: 11px;
+            letter-spacing: 2px;
+            background: rgba(234, 179, 8, 0.05);
+            margin-bottom: 12px;
         }
 
-        /* كتابة اسم Sanad حرف بحرف وبفخامة */
         .welcome-title-main {
-            font-size: 54px;
+            font-size: 42px;
             font-weight: 900;
             color: #facc15;
-            letter-spacing: 4px;
-            text-shadow: 0 0 35px rgba(234, 179, 8, 0.9), 0 0 15px rgba(250, 204, 21, 0.6);
-            display: inline-block;
-            border-left: 3px solid #facc15;
-            padding-left: 6px;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: blinkCursor 0.7s infinite;
-        }
-
-        @keyframes blinkCursor {
-            0%, 100% { border-color: transparent; }
-            50% { border-color: #facc15; }
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(234, 179, 8, 0.6);
         }
 
         /* الشريط العلوي */
@@ -182,8 +152,7 @@
             border: 1px solid rgba(234, 179, 8, 0.2);
             padding: 8px 12px;
             border-radius: 14px;
-            backdrop-filter: blur(10px);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             flex-shrink: 0;
         }
 
@@ -220,7 +189,21 @@
             font-size: 11px;
         }
 
-        /* 2. واجهة الاستقبال */
+        /* شريط التنبيهات الحي الذهبي */
+        .live-ticker {
+            background: linear-gradient(90deg, rgba(234,179,8,0.15), rgba(202,138,4,0.3), rgba(234,179,8,0.15));
+            border: 1px solid rgba(234,179,8,0.4);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 11px;
+            color: #fef08a;
+            text-align: center;
+            margin-bottom: 12px;
+            font-weight: 700;
+            box-shadow: 0 0 10px rgba(234, 179, 8, 0.2);
+        }
+
+        /* واجهة الاستقبال */
         .hero-body {
             display: flex;
             flex-direction: column;
@@ -237,49 +220,47 @@
         }
 
         .glowing-welcome {
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 3px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
             color: #fef08a;
             text-transform: uppercase;
             margin-bottom: 4px;
         }
 
         .glowing-sanad {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 900;
             color: #fff;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 15px rgba(234, 179, 8, 0.9), 0 0 25px rgba(234, 179, 8, 0.6);
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(234, 179, 8, 0.8), 0 0 20px rgba(234, 179, 8, 0.6);
         }
 
         .hero-title {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 900;
             color: #fff;
             margin-bottom: 6px;
         }
 
         .teacher-signature-box {
-            background: rgba(234, 179, 8, 0.08);
-            border: 1px solid rgba(234, 179, 8, 0.4);
-            padding: 6px 16px;
+            background: rgba(234, 179, 8, 0.05);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            padding: 6px 14px;
             border-radius: 8px;
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 900;
             color: #facc15;
             margin-bottom: 12px;
-            box-shadow: 0 0 10px rgba(234, 179, 8, 0.2);
         }
 
         .hero-desc {
-            color: #e2e8f0;
-            font-size: 12px;
-            line-height: 1.7;
+            color: #9ca3af;
+            font-size: 11.5px;
+            line-height: 1.6;
             padding: 0 5px;
             margin-bottom: 15px;
-            font-weight: 500;
         }
 
         .hero-buttons {
@@ -303,16 +284,16 @@
             background: linear-gradient(135deg, #facc15, #ca8a04);
             color: #000;
             border: none;
-            box-shadow: 0 4px 12px rgba(234, 179, 8, 0.4);
+            box-shadow: 0 4px 10px rgba(234, 179, 8, 0.3);
         }
 
         .btn-login {
             background: rgba(255, 255, 255, 0.04);
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        /* 3. شاشة تسجيل الدخول */
+        /* شاشة تسجيل الدخول */
         .auth-body {
             text-align: center;
             display: flex;
@@ -329,8 +310,8 @@
         }
 
         .auth-subtitle {
-            color: #cbd5e1;
-            font-size: 11.5px;
+            color: #9ca3af;
+            font-size: 11px;
             margin-bottom: 14px;
         }
 
@@ -342,8 +323,8 @@
         .input-group input {
             width: 100%;
             padding: 11px 12px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 8px;
             color: #fff;
             font-size: 12px;
@@ -352,8 +333,8 @@
 
         .grades-selection-label {
             text-align: right;
-            font-size: 11.5px;
-            color: #facc15;
+            font-size: 11px;
+            color: #eab308;
             margin-bottom: 6px;
             font-weight: 700;
         }
@@ -370,7 +351,7 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 8px;
             padding: 10px 4px;
-            color: #cbd5e1;
+            color: #ccc;
             font-size: 11.5px;
             font-weight: 700;
             cursor: pointer;
@@ -382,7 +363,7 @@
             background: rgba(234, 179, 8, 0.2);
             border-color: #facc15;
             color: #facc15;
-            box-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
+            box-shadow: 0 0 8px rgba(234, 179, 8, 0.4);
         }
 
         .btn-submit {
@@ -399,7 +380,7 @@
             margin-top: 5px;
         }
 
-        /* 4. لوحة التحكم */
+        /* لوحة التحكم والأزرار النيون */
         .dashboard-body {
             margin: auto 0;
         }
@@ -407,23 +388,37 @@
         .student-welcome-card {
             background: rgba(234, 179, 8, 0.05);
             border: 1px solid rgba(234, 179, 8, 0.3);
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 14px;
             text-align: center;
+            position: relative;
         }
 
         .student-name-display {
             color: #facc15;
             font-weight: 800;
-            font-size: 14.5px;
+            font-size: 15px;
             margin-top: 2px;
         }
 
         .selected-grade-tag {
             font-size: 11px;
-            color: #cbd5e1;
+            color: #9ca3af;
             margin-top: 2px;
+        }
+
+        .student-badge-live {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(234, 179, 8, 0.2);
+            border: 1px solid #facc15;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-size: 10px;
+            color: #facc15;
+            font-weight: 800;
         }
 
         .menu-grid {
@@ -441,29 +436,14 @@
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(234, 179, 8, 0.15), inset 0 0 10px rgba(234, 179, 8, 0.05);
-            animation: neonPulse 3s infinite alternate;
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.15);
             transition: all 0.3s ease;
-        }
-
-        @keyframes neonPulse {
-            0% {
-                border-color: rgba(234, 179, 8, 0.3);
-                box-shadow: 0 0 10px rgba(234, 179, 8, 0.15);
-            }
-            100% {
-                border-color: rgba(250, 204, 21, 0.85);
-                box-shadow: 0 0 25px rgba(250, 204, 21, 0.4), inset 0 0 12px rgba(250, 204, 21, 0.2);
-            }
         }
 
         .menu-card:hover {
             transform: translateY(-3px);
-            background: linear-gradient(135deg, rgba(30, 26, 15, 0.95), rgba(18, 16, 22, 0.95));
             border-color: #facc15;
-            box-shadow: 0 0 30px rgba(250, 204, 21, 0.6), inset 0 0 15px rgba(250, 204, 21, 0.3);
+            box-shadow: 0 0 25px rgba(250, 204, 21, 0.5);
         }
 
         .menu-card-info h3 {
@@ -471,20 +451,18 @@
             color: #facc15;
             margin-bottom: 3px;
             font-weight: 800;
-            text-shadow: 0 0 8px rgba(234, 179, 8, 0.4);
         }
 
         .menu-card-info p {
-            font-size: 11px;
-            color: #cbd5e1;
+            font-size: 10.5px;
+            color: #b4b8c1;
         }
 
         .menu-icon {
             font-size: 22px;
-            filter: drop-shadow(0 0 8px rgba(234, 179, 8, 0.6));
         }
 
-        /* 5. شاشة المحاضرات */
+        /* شاشة المحاضرات */
         .lectures-body {
             display: flex;
             flex-direction: column;
@@ -533,8 +511,8 @@
         }
 
         .video-info-box {
-            font-size: 11.5px;
-            color: #e2e8f0;
+            font-size: 11px;
+            color: #bbb;
             margin-bottom: 10px;
             background: rgba(255, 255, 255, 0.03);
             padding: 6px 8px;
@@ -550,25 +528,18 @@
             align-items: center;
             justify-content: space-between;
             text-decoration: none;
-            transition: 0.2s;
             margin-bottom: 10px;
-        }
-
-        .pdf-card:hover {
-            border-color: #facc15;
-            background: rgba(234, 179, 8, 0.08);
         }
 
         .pdf-info h4 {
             font-size: 11.5px;
             color: #fff;
             font-weight: 700;
-            margin-bottom: 1px;
         }
 
         .pdf-info p {
-            font-size: 9.5px;
-            color: #cbd5e1;
+            font-size: 9px;
+            color: #9ca3af;
         }
 
         .pdf-action-btn {
@@ -591,20 +562,10 @@
             font-size: 12px;
             font-weight: 800;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
             box-shadow: 0 0 15px rgba(234, 179, 8, 0.35);
-            transition: 0.2s;
         }
 
-        .open-quiz-modal-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(250, 204, 21, 0.6);
-        }
-
-        /* النوافذ المنبثقة للاختبارات */
+        /* نافذة البابل شيت المنبثقة */
         .quiz-modal-overlay {
             position: fixed;
             top: 0;
@@ -631,12 +592,6 @@
             flex-direction: column;
             overflow: hidden;
             box-shadow: 0 0 35px rgba(234, 179, 8, 0.4);
-            animation: modalPop 0.3s ease;
-        }
-
-        @keyframes modalPop {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
         }
 
         .quiz-modal-header {
@@ -660,7 +615,6 @@
             color: #fff;
             font-size: 16px;
             cursor: pointer;
-            font-weight: bold;
         }
 
         .quiz-modal-body {
@@ -699,7 +653,6 @@
             font-size: 10.5px;
             cursor: pointer;
             text-align: center;
-            transition: 0.2s;
             font-weight: 600;
         }
 
@@ -722,10 +675,9 @@
             font-weight: 800;
             cursor: pointer;
             margin-top: 5px;
-            box-shadow: 0 0 15px rgba(234, 179, 8, 0.3);
         }
 
-        /* نافذة النتيجة */
+        /* نافذة النتيجة المنبثقة الفخمة بالإيموجي */
         .result-popup-overlay {
             position: fixed;
             top: 0;
@@ -782,67 +734,9 @@
             cursor: pointer;
         }
 
-        /* زرار سؤال المستر العائم */
-        .floating-question-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: linear-gradient(135deg, #facc15, #ca8a04);
-            color: #000;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 22px;
-            box-shadow: 0 0 20px rgba(250, 204, 21, 0.7);
-            cursor: pointer;
-            z-index: 998;
-            border: 2px solid #fff;
-        }
-
-        .question-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 1001;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-        }
-
-        .question-modal-card {
-            background: linear-gradient(135deg, #121218, #1a1721);
-            border: 2px solid #facc15;
-            border-radius: 16px;
-            padding: 20px;
-            width: 100%;
-            max-width: 330px;
-        }
-
-        .question-modal-card textarea {
-            width: 100%;
-            height: 90px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(234, 179, 8, 0.4);
-            border-radius: 8px;
-            color: #fff;
-            padding: 10px;
-            font-size: 11.5px;
-            outline: none;
-            resize: none;
-            margin-bottom: 12px;
-        }
-
         .no-lectures {
             text-align: center;
-            color: #cbd5e1;
+            color: #9ca3af;
             font-size: 12px;
             padding: 30px 10px;
         }
@@ -857,41 +751,27 @@
         }
     </style>
 </head>
-<body onclick="showTouchEffect(event)">
+<body>
 
+    <!-- خلفية الفقاعات الرياضية -->
     <div class="math-bg" id="mathBg"></div>
 
-    <!-- زرار سؤال المستر -->
-    <div class="floating-question-btn" onclick="openQuestionModal(event)" title="اسأل المستر">💬</div>
-
-    <!-- نافذة السؤال للمستر -->
-    <div class="question-modal-overlay" id="questionModalOverlay">
-        <div class="question-modal-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <div style="color: #facc15; font-weight: 900; font-size: 13px;">💬 اترك سؤالك للمستر أحمد</div>
-                <button onclick="closeQuestionModal(event)" style="background:none; border:none; color:#fff; font-size:16px; cursor:pointer;">✕</button>
-            </div>
-            <textarea id="studentQuestionText" placeholder="اكتب سؤالك في المسألة أو الدرس وسيجيبك المستر قريباً..."></textarea>
-            <button class="submit-quiz-btn" onclick="sendQuestionToTeacher(event)">إرسال السؤال للمستر 🚀</button>
-        </div>
-    </div>
-
-    <!-- نافذة الاختبارات -->
+    <!-- نافذة بابل شيت الاختبار المنبثقة -->
     <div class="quiz-modal-overlay" id="quizModalOverlay">
         <div class="quiz-modal-content">
             <div class="quiz-modal-header">
-                <div class="quiz-modal-title" id="modalLectureTitle">اختبار التركيز</div>
+                <div class="quiz-modal-title" id="modalLectureTitle">حل واجب البابل شيت</div>
                 <button class="close-modal-btn" onclick="closeQuizModal()">✕</button>
             </div>
             <div class="quiz-modal-body" id="quizModalBody"></div>
         </div>
     </div>
 
-    <!-- نافذة النتيجة -->
+    <!-- نافذة النتيجة المنبثقة مع الإيموجي -->
     <div class="result-popup-overlay" id="resultPopupOverlay">
         <div class="result-popup-card">
             <div class="result-emoji" id="resultEmoji">🎉</div>
-            <div class="result-title" id="resultTitle">النتيجة</div>
+            <div class="result-title" id="resultTitle">نتيجة الواجب</div>
             <div class="result-score-text" id="resultScoreText">درجتك هي: 2 من 2</div>
             <button class="close-result-btn" onclick="closeResultPopup()">حسناً، رائع جداً ✨</button>
         </div>
@@ -899,26 +779,30 @@
 
     <div class="phone-frame">
         
-        <!-- شاشة الترحيب (Sanad تتكتب حرف بحرف بفخامة) -->
+        <!-- شاشة الترحيب -->
         <div id="welcomeScreen">
             <div></div>
             <div>
                 <div class="welcome-badge-box">✨ SANAD PLATFORM</div>
-                <div class="welcome-title-main" id="typedWelcomeLogo"></div>
-                <div style="color: #ffffff; font-size: 12.5px; margin-top: 14px; font-weight: 700; letter-spacing: 1px;">منصة الرياضيات المتطورة مع أ. أحمد عبد العليم</div>
+                <div class="welcome-title-main" id="typedLogo">Sanad</div>
             </div>
             <div><div class="bottom-line"></div></div>
         </div>
 
         <!-- واجهة الاستقبال -->
-        <div id="mainScreen" class="screen">
+        <div id="mainScreen" class="screen active">
             <div class="top-status-bar">
                 <div class="logo-circle">S</div>
-                <div style="font-size: 10px; color: #cbd5e1;" id="liveClock1">12:10 ص</div>
+                <div style="font-size: 10px; color: #aaa;" id="liveClock1">12:10 ص</div>
                 <div class="nav-arrows">
-                    <button class="nav-btn" onclick="navigate('welcome')" title="السابق">◀</button>
-                    <button class="nav-btn" onclick="navigate('auth')" title="التالي">▶</button>
+                    <button class="nav-btn" onclick="navigate('welcome')">◀</button>
+                    <button class="nav-btn" onclick="navigate('auth')">▶</button>
                 </div>
+            </div>
+
+            <!-- شريط التنبيهات الحي الذهبي -->
+            <div class="live-ticker">
+                📢 أهلاً بكم في منصة مستر أحمد عبد العليم.. انتظروا أقوى مراجعات الرياضيات! 🔥
             </div>
 
             <div class="hero-body">
@@ -930,7 +814,9 @@
                 <h2 class="hero-title">منصة الرياضيات المتطورة</h2>
                 <div class="teacher-signature-box">Mr. Ahmad Abdelaleem</div>
                 
-                <p class="hero-desc">حيث تحويل المعادلات المعقدة إلى متعة بصرية، وتبسيط أفكار الرياضيات لبناء عقل هندسي مبدع.</p>
+                <p class="hero-desc">
+                    حيث تحويل المعادلات المعقدة إلى متعة بصرية، وتبسيط أفكار الرياضيات لبناء عقل هندسي مبدع.
+                </p>
             </div>
 
             <div class="hero-buttons">
@@ -944,16 +830,16 @@
         <div id="authScreen" class="screen">
             <div class="top-status-bar">
                 <div class="logo-circle">S</div>
-                <div style="font-size: 10px; color: #cbd5e1;" id="liveClock2">12:10 ص</div>
+                <div style="font-size: 10px; color: #aaa;" id="liveClock2">12:10 ص</div>
                 <div class="nav-arrows">
-                    <button class="nav-btn" onclick="navigate('main')" title="السابق">◀</button>
-                    <button class="nav-btn" onclick="navigate('dashboard')" title="التالي">▶</button>
+                    <button class="nav-btn" onclick="navigate('main')">◀</button>
+                    <button class="nav-btn" onclick="navigate('dashboard')">▶</button>
                 </div>
             </div>
 
             <div class="auth-body">
                 <h2 class="auth-title">تسجيل دخول الطالب</h2>
-                <p class="auth-subtitle">أدخل بياناتك واختر مرحلتك الدراسية لمرة واحدة</p>
+                <p class="auth-subtitle">أدخل بياناتك واختر مرحلتك الدراسية</p>
                 
                 <form onsubmit="handleLogin(event)">
                     <div class="input-group">
@@ -973,7 +859,7 @@
                         <div class="grade-btn" onclick="selectGrade(this, 'ثالثة ثانوي')">ثالثة ثانوي</div>
                     </div>
 
-                    <button type="submit" class="btn-submit">دخول للمنصة وحفظ الحساب ➔</button>
+                    <button type="submit" class="btn-submit">دخول للمنصة ➔</button>
                 </form>
             </div>
 
@@ -983,17 +869,18 @@
         <!-- لوحة التحكم -->
         <div id="dashboardScreen" class="screen">
             <div class="top-status-bar">
-                <div class="logo-circle" style="cursor: pointer;" onclick="logout()" title="تسجيل خروج">🚪</div>
-                <div style="font-size: 10px; color: #facc15; font-weight: bold;">أ. أحمد عبد العليم</div>
+                <div class="logo-circle" style="cursor: pointer;" onclick="logout()" title="خروج">🚪</div>
+                <div style="font-size: 10px; color: #eab308; font-weight: bold;">أ. أحمد عبد العليم</div>
                 <div class="nav-arrows">
-                    <button class="nav-btn" onclick="navigate('auth')" title="السابق">◀</button>
-                    <button class="nav-btn" onclick="navigate('main')" title="الرئيسية">⌂</button>
+                    <button class="nav-btn" onclick="navigate('auth')">◀</button>
+                    <button class="nav-btn" onclick="navigate('main')">⌂</button>
                 </div>
             </div>
 
             <div class="dashboard-body">
                 <div class="student-welcome-card">
-                    <p style="font-size: 10.5px; color: #cbd5e1;">أهلاً بك يا بطل:</p>
+                    <div class="student-badge-live">⭐ طالب مجتهد</div>
+                    <p style="font-size: 10.5px; color: #9ca3af; margin-top: 4px;">أهلاً بك يا بطل:</p>
                     <div class="student-name-display" id="displayName">اسم الطالب هنا</div>
                     <div class="selected-grade-tag" id="displayGrade">المرحلة الدراسية</div>
                 </div>
@@ -1002,23 +889,23 @@
                     <div class="menu-card" onclick="navigate('lectures')">
                         <div class="menu-card-info">
                             <h3>المحاضرات والشروحات</h3>
-                            <p>شاهد الحصص واختبر تركيزك فوراً</p>
+                            <p>شاهد الحصص وحل واجب البابل شيت الفوري</p>
                         </div>
                         <div class="menu-icon">📚</div>
                     </div>
 
-                    <div class="menu-card" onclick="alert('جاري فتح قسم الواجبات المنزلية والبابل شيت الأسبوعي...')">
+                    <div class="menu-card" onclick="alert('📝 ميزة الواجبات الإضافية ستتوفر قريبآ!')">
                         <div class="menu-card-info">
                             <h3>الواجبات المنزلية</h3>
-                            <p>حل التمارين والتدريبات بأسلوب البابل شيت</p>
+                            <p>تابع وحل التمارين والتدريبات الأسبوعية</p>
                         </div>
                         <div class="menu-icon">📝</div>
                     </div>
 
-                    <div class="menu-card" onclick="openComprehensiveQuiz()">
+                    <div class="menu-card" onclick="alert('⚡ الاختبارات الشاملة قيد التجهيز، انتظرنا قريباً!')">
                         <div class="menu-card-info">
                             <h3>الاختبارات الشاملة</h3>
-                            <p>اختبر مستواك بشيت شامل لمدى استيعابك للمنهج</p>
+                            <p>اختبر مستواك واكشف مدى استيعابك للمنهج</p>
                         </div>
                         <div class="menu-icon">⚡</div>
                     </div>
@@ -1031,10 +918,10 @@
         <!-- شاشة المحاضرات -->
         <div id="lecturesScreen" class="screen">
             <div class="top-status-bar">
-                <div class="logo-circle" style="cursor: pointer;" onclick="navigate('dashboard')" title="رجوع">↩</div>
-                <div style="font-size: 10px; color: #facc15; font-weight: bold;">المحاضرات واختبار التركيز</div>
+                <div class="logo-circle" style="cursor: pointer;" onclick="navigate('dashboard')">↩</div>
+                <div style="font-size: 10px; color: #eab308; font-weight: bold;">المحاضرات والواجب</div>
                 <div class="nav-arrows">
-                    <button class="nav-btn" onclick="navigate('dashboard')" title="لوحة التحكم">⌂</button>
+                    <button class="nav-btn" onclick="navigate('dashboard')">⌂</button>
                 </div>
             </div>
 
@@ -1086,182 +973,33 @@
             }
         ];
 
-        const comprehensiveQuizzes = {
-            "أولى ثانوي": [
-                { qId: 101, text: "سؤال شامل 1: مدى الدالة الثابتة د(س) = 5 هو:", options: ["{5}", "ح", "صفر", "فترة مفتوحة"], correct: 0 },
-                { qId: 102, text: "سؤال شامل 2: ابسط شكل للعدد التخيلي ت^4 يساوي:", options: ["1", "-1", "ت", "-ت"], correct: 0 }
-            ],
-            "ثانية ثانوي": [
-                { qId: 201, text: "سؤال شامل 1: مجال الدالة د(س) = 1 / (س-2) هو:", options: ["ح - {2}", "ح", "{2}", "فترة موجبة"], correct: 0 }
-            ],
-            "ثالثة ثانوي": [
-                { qId: 301, text: "سؤال شامل 1: النهاية العظمى المحلية للدالة د(س) = -س² + 4س هي عند س =", options: ["2", "0", "-2", "4"], correct: 0 }
-            ]
-        };
-
         let currentStudentGrade = '';
         let studentAnswers = {};
-
-        window.addEventListener('DOMContentLoaded', () => {
-            typeWelcomeLogo();
-            
-            // إخفاء شاشة الترحيب أوتوماتيكياً والانتقال للرئيسية أو لوحة التحكم بعد 3.8 ثانية
-            setTimeout(() => {
-                const welcomeEl = document.getElementById('welcomeScreen');
-                if(welcomeEl) {
-                    welcomeEl.classList.add('hide');
-                }
-                
-                const savedName = localStorage.getItem('sanad_student_name');
-                const savedGrade = localStorage.getItem('sanad_student_grade');
-
-                if (savedName && savedGrade) {
-                    document.getElementById('displayName').innerText = savedName;
-                    document.getElementById('displayGrade').innerText = savedGrade;
-                    currentStudentGrade = savedGrade;
-                    navigate('dashboard');
-                } else {
-                    navigate('main');
-                }
-            }, 3800);
-        });
-
-        // كتابة اسم Sanad حرف بحرف في شاشة الترحيب
-        const welcomeLogoText = "Sanad";
-        const typedWelcomeElement = document.getElementById('typedWelcomeLogo');
-        let welcomeCharIndex = 0;
-
-        function typeWelcomeLogo() {
-            if (typedWelcomeElement && welcomeCharIndex < welcomeLogoText.length) {
-                typedWelcomeElement.textContent += welcomeLogoText.charAt(welcomeCharIndex);
-                welcomeCharIndex++;
-                setTimeout(typeWelcomeLogo, 220);
-            }
-        }
-
-        function showTouchEffect(event) {
-            if (event.target.tagName === 'BUTTON' || event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
-
-            const x = event.clientX;
-            const y = event.clientY;
-
-            const span = document.createElement('div');
-            span.className = 'touch-effect';
-            span.innerText = 'M Ahmad';
-            span.style.left = x + 'px';
-            span.style.top = y + 'px';
-
-            document.body.appendChild(span);
-            setTimeout(() => span.remove(), 900);
-        }
-
-        const symbols = ['∫', '∑', 'π', '√', '∞', 'Δ', 'θ', 'ƒ(x)', 'sin', 'cos', '±', 'x²'];
-        const mathBg = document.getElementById('mathBg');
-        
-        for (let i = 0; i < 16; i++) {
-            const bubble = document.createElement('div');
-            bubble.className = 'math-bubble';
-            bubble.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-            
-            const size = Math.floor(Math.random() * 14) + 24;
-            bubble.style.width = size + 'px';
-            bubble.style.height = size + 'px';
-            const isLeft = Math.random() > 0.5;
-            bubble.style.left = isLeft ? (Math.random() * 18) + '%' : (Math.random() * 18 + 78) + '%';
-            bubble.style.animationDuration = (Math.random() * 8 + 6) + 's';
-            bubble.style.animationDelay = (Math.random() * 5) + 's';
-            
-            mathBg.appendChild(bubble);
-        }
-
-        function goToAuth() {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('authScreen').classList.add('active');
-        }
-
-        function selectGrade(element, gradeName) {
-            document.querySelectorAll('.grade-btn').forEach(btn => btn.classList.remove('selected'));
-            element.classList.add('selected');
-            currentStudentGrade = gradeName;
-        }
-
-        function navigate(targetScreenId) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            
-            if(targetScreenId === 'welcome') {
-                document.getElementById('welcomeScreen').classList.remove('hide');
-            } else if(targetScreenId === 'main') {
-                document.getElementById('mainScreen').classList.add('active');
-            } else if(targetScreenId === 'auth') {
-                document.getElementById('authScreen').classList.add('active');
-            } else if(targetScreenId === 'dashboard') {
-                document.getElementById('dashboardScreen').classList.add('active');
-            } else if(targetScreenId === 'lectures') {
-                loadLecturesForStudent();
-                document.getElementById('lecturesScreen').classList.add('active');
-            }
-        }
-
-        function handleLogin(event) {
-            event.preventDefault();
-            const name = document.getElementById('studentName').value;
-            if(name.trim() !== "" && currentStudentGrade !== '') {
-                localStorage.setItem('sanad_student_name', name);
-                localStorage.setItem('sanad_student_grade', currentStudentGrade);
-
-                document.getElementById('displayName').innerText = name;
-                document.getElementById('displayGrade').innerText = currentStudentGrade;
-                navigate('dashboard');
-            } else {
-                alert('الرجاء كتابة الاسم واختيار المرحلة الدراسية!');
-            }
-        }
-
-        function logout() {
-            localStorage.removeItem('sanad_student_name');
-            localStorage.removeItem('sanad_student_grade');
-            navigate('main');
-            document.getElementById('studentName').value = '';
-            document.getElementById('studentPhone').value = '';
-            document.querySelectorAll('.grade-btn').forEach(btn => btn.classList.remove('selected'));
-            currentStudentGrade = '';
-            studentAnswers = {};
-        }
 
         function loadLecturesForStudent() {
             const container = document.getElementById('lecturesContainer');
             container.innerHTML = "";
-
             const filteredLectures = lecturesData.filter(item => item.grade === currentStudentGrade);
 
             if (filteredLectures.length === 0) {
-                container.innerHTML = `<div class="no-lectures">لا توجد محاضرات منشورة لهذه المرحلة حتى الآن، انتظرنا قريباً! 📚</div>`;
+                container.innerHTML = `<div class="no-lectures">لا توجد محاضرات منشورة لهذه المرحلة حتى الآن! 📚</div>`;
                 return;
             }
 
             filteredLectures.forEach((lecture) => {
                 const box = document.createElement('div');
                 box.className = 'lecture-item-box';
-                
                 box.innerHTML = `
                     <div class="section-title">${lecture.title}</div>
                     <div class="video-container">
                         <iframe src="${lecture.videoEmbed}" title="شرح الحصة" allowfullscreen></iframe>
                     </div>
-                    <div class="video-info-box">
-                        <strong>شرح الأستاذ أحمد:</strong> ${lecture.desc}
-                    </div>
+                    <div class="video-info-box"><strong>شرح الأستاذ أحمد:</strong> ${lecture.desc}</div>
                     <a href="${lecture.pdfLink}" target="_blank" class="pdf-card">
-                        <div class="pdf-info">
-                           <h4>${lecture.pdfTitle}</h4>
-                           <p>انقر لتحميل ملف الشرح من كتابك</p>
-                        </div>
+                        <div class="pdf-info"><h4>${lecture.pdfTitle}</h4><p>انقر للتحميل المباشر للحل من كتابك</p></div>
                         <div class="pdf-action-btn">تحميل ⬇</div>
                     </a>
-
-                    <button class="open-quiz-modal-btn" onclick="openQuizModal(${lecture.id})">
-                        🎯 اختبار التركيز على المحاضرة الفوري
-                    </button>
+                    <button class="open-quiz-modal-btn" onclick="openQuizModal(${lecture.id})">📝 فتح ورقة بابل شيت الواجب التفاعلي</button>
                 `;
                 container.appendChild(box);
             });
@@ -1269,8 +1007,7 @@
 
         function openQuizModal(lectureId) {
             const lecture = lecturesData.find(l => l.id === lectureId);
-            document.getElementById('modalLectureTitle').innerText = "اختبار التركيز: " + lecture.title;
-            
+            document.getElementById('modalLectureTitle').innerText = lecture.title;
             const modalBody = document.getElementById('quizModalBody');
             modalBody.innerHTML = '';
 
@@ -1279,86 +1016,23 @@
                 let optionsHTML = '';
                 q.options.forEach((opt, optIndex) => {
                     const isSelected = studentAnswers[lectureId] && studentAnswers[lectureId][q.qId] === optIndex ? 'selected' : '';
-                    optionsHTML += `
-                        <button type="button" class="option-btn ${isSelected}" onclick="selectOption(${lectureId}, ${q.qId}, ${optIndex}, this)">
-                            ${opt}
-                        </button>
-                    `;
+                    optionsHTML += `<button type="button" class="option-btn ${isSelected}" onclick="selectOption(${lectureId}, ${q.qId}, ${optIndex}, this)">${opt}</button>`;
                 });
-
-                questionsHTML += `
-                    <div class="question-item">
-                        <div class="question-text">${q.text}</div>
-                        <div class="options-grid">${optionsHTML}</div>
-                    </div>
-                `;
+                questionsHTML += `<div class="question-item"><div class="question-text">${q.text}</div><div class="options-grid">${optionsHTML}</div></div>`;
             });
 
-            questionsHTML += `
-                <button class="submit-quiz-btn" onclick="submitQuiz(${lectureId})">تصحيح الاختبار وإرسال النتيجة ⚡</button>
-            `;
-
+            questionsHTML += `<button class="submit-quiz-btn" onclick="submitQuiz(${lectureId})">تصحيح الواجب وإرسال النتيجة ⚡</button>`;
             modalBody.innerHTML = questionsHTML;
             document.getElementById('quizModalOverlay').style.display = 'flex';
         }
 
-        function openComprehensiveQuiz() {
-            const list = comprehensiveQuizzes[currentStudentGrade] || [];
-            if (list.length === 0) {
-                alert('لا توجد اختبارات شاملة متاحة لهذه المرحلة حالياً.');
-                return;
-            }
-
-            document.getElementById('modalLectureTitle').innerText = "⚡ الاختبار الشامل للمنهج (" + currentStudentGrade + ")";
-            const modalBody = document.getElementById('quizModalBody');
-            modalBody.innerHTML = '';
-
-            let questionsHTML = '';
-            list.forEach((q) => {
-                let optionsHTML = '';
-                q.options.forEach((opt, optIndex) => {
-                    const isSelected = studentAnswers['comp_' + q.qId] === optIndex ? 'selected' : '';
-                    optionsHTML += `
-                        <button type="button" class="option-btn ${isSelected}" onclick="selectCompOption(${q.qId}, ${optIndex}, this)">
-                            ${opt}
-                        </button>
-                    `;
-                });
-
-                questionsHTML += `
-                    <div class="question-item">
-                        <div class="question-text">${q.text}</div>
-                        <div class="options-grid">${optionsHTML}</div>
-                    </div>
-                `;
-            });
-
-            questionsHTML += `
-                <button class="submit-quiz-btn" onclick="submitComprehensiveQuiz()">تصحيح الاختبار الشامل ⚡</button>
-            `;
-
-            modalBody.innerHTML = questionsHTML;
-            document.getElementById('quizModalOverlay').style.display = 'flex';
-        }
-
-        function closeQuizModal() {
-            document.getElementById('quizModalOverlay').style.display = 'none';
-        }
+        function closeQuizModal() { document.getElementById('quizModalOverlay').style.display = 'none'; }
 
         function selectOption(lectureId, qId, optIndex, btnElement) {
-            const parentGrid = btnElement.parentElement;
-            parentGrid.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            btnElement.parentElement.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
             btnElement.classList.add('selected');
-
             if (!studentAnswers[lectureId]) studentAnswers[lectureId] = {};
             studentAnswers[lectureId][qId] = optIndex;
-        }
-
-        function selectCompOption(qId, optIndex, btnElement) {
-            const parentGrid = btnElement.parentElement;
-            parentGrid.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-            btnElement.classList.add('selected');
-            studentAnswers['comp_' + qId] = optIndex;
         }
 
         function submitQuiz(lectureId) {
@@ -1367,28 +1041,9 @@
             let score = 0;
             let total = lecture.questions.length;
 
-            lecture.questions.forEach(q => {
-                if (userAns[q.qId] === q.correct) score++;
-            });
-
+            lecture.questions.forEach(q => { if (userAns[q.qId] === q.correct) score++; });
             closeQuizModal();
-            showResultModal(score, total);
-        }
 
-        function submitComprehensiveQuiz() {
-            const list = comprehensiveQuizzes[currentStudentGrade] || [];
-            let score = 0;
-            let total = list.length;
-
-            list.forEach(q => {
-                if (studentAnswers['comp_' + q.qId] === q.correct) score++;
-            });
-
-            closeQuizModal();
-            showResultModal(score, total);
-        }
-
-        function showResultModal(score, total) {
             const emojiEl = document.getElementById('resultEmoji');
             const titleEl = document.getElementById('resultTitle');
             const textEl = document.getElementById('resultScoreText');
@@ -1396,62 +1051,97 @@
             if (score === total) {
                 emojiEl.innerText = "🏆🎉";
                 titleEl.innerText = "أنت بطل أسطوري!";
-                textEl.innerHTML = `درجتك بكل تفوق: <b>${score} / ${total}</b><br>استمر في هذا الإبداع المذهل!`;
+                textEl.innerHTML = `درجتك النهائية بكل تفوق: <b>${score} / ${total}</b><br>استمر في هذا الإبداع!`;
             } else if (score > 0) {
                 emojiEl.innerText = "🌟💪";
                 titleEl.innerText = "أداء طيب جداً!";
-                textEl.innerHTML = `درجتك هي: <b>${score} من ${total}</b><br>قريب جداً من القمة، راجع الأخطاء وكرر المحاولة!`;
+                textEl.innerHTML = `درجتك هي: <b>${score} من ${total}</b><br>قريب جداً من القمة، حاول مرة أخرى!`;
             } else {
                 emojiEl.innerText = "💡📉";
                 titleEl.innerText = "محاولة لا بأس بها";
-                textEl.innerHTML = `درجتك هي: <b>${score} من ${total}</b><br>راجع الشرح مرة تانية وهتقفلها المرة الجاية!`;
+                textEl.innerHTML = `درجتك هي: <b>${score} من ${total}</b><br>راجع الشرح وهتقفلها المرة الجاية!`;
             }
 
             document.getElementById('resultPopupOverlay').style.display = 'flex';
         }
 
-        function closeResultPopup() {
-            document.getElementById('resultPopupOverlay').style.display = 'none';
+        function closeResultPopup() { document.getElementById('resultPopupOverlay').style.display = 'none'; }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => { document.getElementById('welcomeScreen').classList.add('hide'); }, 3000);
+        });
+
+        // توليد الفقاعات الرياضية الخلفية
+        const symbols = ['∫', '∑', 'π', '√', '∞', 'Δ', 'θ', 'ƒ(x)', 'sin', 'cos', '123', '±', 'x²', 'dy/dx'];
+        const mathBg = document.getElementById('mathBg');
+        for (let i = 0; i < 25; i++) {
+            const bubble = document.createElement('div');
+            bubble.className = 'math-bubble';
+            bubble.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            const size = Math.floor(Math.random() * 18) + 26;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = (Math.random() * 92) + '%';
+            bubble.style.animationDuration = (Math.random() * 5 + 4) + 's';
+            bubble.style.animationDelay = (Math.random() * 4) + 's';
+            mathBg.appendChild(bubble);
         }
 
-        function openQuestionModal(event) {
-            event.stopPropagation();
-            if (!localStorage.getItem('sanad_student_name')) {
-                alert('الرجاء تسجيل الدخول أولاً لتتمكن من إرسال سؤالك للمستر.');
-                return;
+        function goToAuth() {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('authScreen').classList.add('active');
+        }
+
+        let selectedGradeText = 'الصف غير محدد';
+        function selectGrade(element, gradeName) {
+            document.querySelectorAll('.grade-btn').forEach(btn => btn.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedGradeText = gradeName;
+            currentStudentGrade = gradeName;
+        }
+
+        function navigate(targetScreenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            if(targetScreenId === 'welcome') document.getElementById('welcomeScreen').classList.remove('hide');
+            else if(targetScreenId === 'main') document.getElementById('mainScreen').classList.add('active');
+            else if(targetScreenId === 'auth') document.getElementById('authScreen').classList.add('active');
+            else if(targetScreenId === 'dashboard') document.getElementById('dashboardScreen').classList.add('active');
+            else if(targetScreenId === 'lectures') {
+                loadLecturesForStudent();
+                document.getElementById('lecturesScreen').classList.add('active');
             }
-            document.getElementById('questionModalOverlay').style.display = 'flex';
         }
 
-        function closeQuestionModal(event) {
-            event.stopPropagation();
-            document.getElementById('questionModalOverlay').style.display = 'none';
-        }
-
-        function sendQuestionToTeacher(event) {
-            event.stopPropagation();
-            const text = document.getElementById('studentQuestionText').value.trim();
-            if (text === '') {
-                alert('الرجاء كتابة السؤال أولاً!');
-                return;
+        function handleLogin(event) {
+            event.preventDefault();
+            const name = document.getElementById('studentName').value;
+            if(name.trim() !== "") {
+                document.getElementById('displayName').innerText = name;
+                document.getElementById('displayGrade').innerText = selectedGradeText;
+                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+                document.getElementById('dashboardScreen').classList.add('active');
             }
-            alert('✅ تم إرسال سؤالك بنجاح إلى المستر أحمد عبد العليم وسيرد عليك قريباً!');
-            document.getElementById('studentQuestionText').value = '';
-            document.getElementById('questionModalOverlay').style.display = 'none';
+        }
+
+        function logout() {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('mainScreen').classList.add('active');
+            document.getElementById('studentName').value = '';
+            document.getElementById('studentPhone').value = '';
+            document.querySelectorAll('.grade-btn').forEach(btn => btn.classList.remove('selected'));
+            currentStudentGrade = '';
+            studentAnswers = {};
         }
 
         function updateTime() {
             const now = new Date();
-            let h = now.getHours();
-            let m = now.getMinutes();
+            let h = now.getHours(), m = now.getMinutes();
             const ampm = h >= 12 ? 'م' : 'ص';
             h = h % 12 || 12;
             m = m < 10 ? '0' + m : m;
             const timeStr = `${h}:${m} ${ampm}`;
-            const c1 = document.getElementById('liveClock1');
-            const c2 = document.getElementById('liveClock2');
-            if(c1) c1.innerText = timeStr;
-            if(c2) c2.innerText = timeStr;
+            if(document.getElementById('liveClock1')) document.getElementById('liveClock1').innerText = timeStr;
+            if(document.getElementById('liveClock2')) document.getElementById('liveClock2').innerText = timeStr;
         }
         setInterval(updateTime, 1000);
         updateTime();
