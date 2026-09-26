@@ -135,12 +135,24 @@
             margin-bottom: 12px;
         }
 
+        /* تأثير كتابة اسم Sanad حرف بحرف الفخم */
         .welcome-title-main {
             font-size: 42px;
             font-weight: 900;
             color: #facc15;
             letter-spacing: 3px;
             text-shadow: 0 0 30px rgba(234, 179, 8, 0.6);
+            display: inline-block;
+            border-left: 3px solid #facc15;
+            padding-left: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blinkCursor 0.7s infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: #facc15; }
         }
 
         /* الشريط العلوي */
@@ -812,7 +824,7 @@
             <div></div>
             <div>
                 <div class="welcome-badge-box">✨ SANAD PLATFORM</div>
-                <div class="welcome-title-main">Sanad</div>
+                <div class="welcome-title-main" id="typedLogo"></div>
             </div>
             <div><div class="bottom-line"></div></div>
         </div>
@@ -828,7 +840,7 @@
                 </div>
             </div>
 
-            <!-- شريط التنبيهات الحي الذهبي مع زر تعديل خاص بالمستر -->
+            <!-- شريط التنبيهات الحي الذهبي مع زر تعديل المستر -->
             <div class="live-ticker-box">
                 <div class="live-ticker-text" id="announcementText">📢 أهلاً بكم في منصة مستر أحمد عبد العليم.. انتظروا أقوى مراجعات الرياضيات! 🔥</div>
                 <button class="edit-announcement-btn" onclick="editAnnouncement()">⚙️ تعديل</button>
@@ -1111,10 +1123,23 @@
         function closeResultPopup() { document.getElementById('resultPopupOverlay').style.display = 'none'; }
 
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => { document.getElementById('welcomeScreen').classList.add('hide'); }, 2500);
+            typeLogo();
+            setTimeout(() => { document.getElementById('welcomeScreen').classList.add('hide'); }, 3000);
         });
 
-        // توليد الفقاعات الرياضية في الوسط والجوانب بالكامل
+        // تأثير كتابة اسم Sanad حرف بحرف
+        const logoText = "Sanad";
+        const typedLogoElement = document.getElementById('typedLogo');
+        let charIndex = 0;
+        function typeLogo() {
+            if (charIndex < logoText.length) {
+                typedLogoElement.textContent += logoText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeLogo, 200);
+            }
+        }
+
+        // توليد الفقاعات الرياضية في المنتصف وعلى الجوانب بالكامل
         const symbols = ['∫', '∑', 'π', '√', '∞', 'Δ', 'θ', 'ƒ(x)', 'sin', 'cos', '123', '±', 'x²', 'dy/dx'];
         const mathBg = document.getElementById('mathBg');
         for (let i = 0; i < 35; i++) {
