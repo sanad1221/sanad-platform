@@ -26,7 +26,7 @@
             padding: 10px 0;
         }
 
-        /* خلفية فقاعات رموز الرياضيات (موزعة على الأطراف لعدم إزعاج المحتوى) */
+        /* خلفية فقاعات رموز الرياضيات (على الأطراف فقط) */
         .math-bg {
             position: fixed;
             top: 0;
@@ -59,7 +59,7 @@
             100% { transform: translateY(-15vh) scale(1.2); opacity: 0; }
         }
 
-        /* تأثير ظهور اسم M Ahmad عند اللمس في أي مكان */
+        /* تأثير ظهور اسم M Ahmad عند اللمس */
         .touch-effect {
             position: fixed;
             color: #facc15;
@@ -117,7 +117,7 @@
             display: flex;
         }
 
-        /* 1. شاشة الترحيب الأولى (كلمة Sanad كبرى وتتنفس توهجاً) */
+        /* 1. شاشة الترحيب الأولى */
         #welcomeScreen {
             background-color: #050507;
             justify-content: center;
@@ -128,8 +128,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 99;
+            z-index: 999;
             display: flex;
+            flex-direction: column;
             transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
@@ -152,18 +153,24 @@
             box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
         }
 
+        /* كتابة اسم Sanad حرف بحرف وبفخامة */
         .welcome-title-main {
-            font-size: 52px;
+            font-size: 54px;
             font-weight: 900;
             color: #facc15;
             letter-spacing: 4px;
-            text-shadow: 0 0 35px rgba(234, 179, 8, 0.8), 0 0 15px rgba(250, 204, 21, 0.5);
-            animation: sanadBreathe 2s infinite alternate;
+            text-shadow: 0 0 35px rgba(234, 179, 8, 0.9), 0 0 15px rgba(250, 204, 21, 0.6);
+            display: inline-block;
+            border-left: 3px solid #facc15;
+            padding-left: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: blinkCursor 0.7s infinite;
         }
 
-        @keyframes sanadBreathe {
-            0% { transform: scale(0.96); text-shadow: 0 0 15px rgba(234, 179, 8, 0.5); }
-            100% { transform: scale(1.04); text-shadow: 0 0 40px rgba(250, 204, 21, 0.9), 0 0 20px rgba(234, 179, 8, 0.7); }
+        @keyframes blinkCursor {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: #facc15; }
         }
 
         /* الشريط العلوي */
@@ -213,7 +220,7 @@
             font-size: 11px;
         }
 
-        /* 2. واجهة الاستقبال الفخمة */
+        /* 2. واجهة الاستقبال */
         .hero-body {
             display: flex;
             flex-direction: column;
@@ -305,7 +312,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* 3. شاشة إدخال البيانات واختيار المرحلة */
+        /* 3. شاشة تسجيل الدخول */
         .auth-body {
             text-align: center;
             display: flex;
@@ -392,7 +399,7 @@
             margin-top: 5px;
         }
 
-        /* 4. لوحة التحكم - أزرار نيون متوهجة وفاخرة */
+        /* 4. لوحة التحكم */
         .dashboard-body {
             margin: auto 0;
         }
@@ -574,7 +581,6 @@
             font-weight: bold;
         }
 
-        /* زر فتح اختبار التركيز على المحاضرة */
         .open-quiz-modal-btn {
             width: 100%;
             padding: 11px;
@@ -598,7 +604,7 @@
             box-shadow: 0 0 20px rgba(250, 204, 21, 0.6);
         }
 
-        /* تصميم النافذة المنبثقة لاختبار التركيز والشاملة */
+        /* النوافذ المنبثقة للاختبارات */
         .quiz-modal-overlay {
             position: fixed;
             top: 0;
@@ -719,7 +725,7 @@
             box-shadow: 0 0 15px rgba(234, 179, 8, 0.3);
         }
 
-        /* نافذة النتيجة المنبثقة الفخمة مع الإيموجي */
+        /* نافذة النتيجة */
         .result-popup-overlay {
             position: fixed;
             top: 0;
@@ -744,19 +750,11 @@
             width: 100%;
             max-width: 310px;
             box-shadow: 0 0 40px rgba(250, 204, 21, 0.5);
-            animation: bounceIn 0.4s ease;
-        }
-
-        @keyframes bounceIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            70% { transform: scale(1.05); }
-            100% { transform: scale(1); opacity: 1; }
         }
 
         .result-emoji {
             font-size: 48px;
             margin-bottom: 10px;
-            filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.6));
         }
 
         .result-title {
@@ -782,10 +780,9 @@
             font-weight: bold;
             font-size: 12px;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
         }
 
-        /* زرار سؤال المستر العائم على الجنب */
+        /* زرار سؤال المستر العائم */
         .floating-question-btn {
             position: fixed;
             bottom: 25px;
@@ -802,15 +799,9 @@
             box-shadow: 0 0 20px rgba(250, 204, 21, 0.7);
             cursor: pointer;
             z-index: 998;
-            transition: 0.3s;
             border: 2px solid #fff;
         }
 
-        .floating-question-btn:hover {
-            transform: scale(1.1);
-        }
-
-        /* نافذة إرسال سؤال للمستر */
         .question-modal-overlay {
             position: fixed;
             top: 0;
@@ -833,7 +824,6 @@
             padding: 20px;
             width: 100%;
             max-width: 330px;
-            box-shadow: 0 0 30px rgba(250, 204, 21, 0.4);
         }
 
         .question-modal-card textarea {
@@ -871,12 +861,10 @@
 
     <div class="math-bg" id="mathBg"></div>
 
-    <!-- زرار عائم ع الجنب لطرح سؤال على المستر -->
-    <div class="floating-question-btn" onclick="openQuestionModal(event)" title="اسأل المستر">
-        💬
-    </div>
+    <!-- زرار سؤال المستر -->
+    <div class="floating-question-btn" onclick="openQuestionModal(event)" title="اسأل المستر">💬</div>
 
-    <!-- نافذة إرسال السؤال للمستر -->
+    <!-- نافذة السؤال للمستر -->
     <div class="question-modal-overlay" id="questionModalOverlay">
         <div class="question-modal-card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -888,7 +876,7 @@
         </div>
     </div>
 
-    <!-- نافذة اختبار التركيز أو الاختبارات الشاملة المنبثقة -->
+    <!-- نافذة الاختبارات -->
     <div class="quiz-modal-overlay" id="quizModalOverlay">
         <div class="quiz-modal-content">
             <div class="quiz-modal-header">
@@ -899,7 +887,7 @@
         </div>
     </div>
 
-    <!-- نافذة النتيجة المنبثقة الفخمة مع الإيموجي -->
+    <!-- نافذة النتيجة -->
     <div class="result-popup-overlay" id="resultPopupOverlay">
         <div class="result-popup-card">
             <div class="result-emoji" id="resultEmoji">🎉</div>
@@ -911,19 +899,19 @@
 
     <div class="phone-frame">
         
-        <!-- شاشة الترحيب (Sanad كبرى وتتنفس توهجاً) -->
+        <!-- شاشة الترحيب (Sanad تتكتب حرف بحرف بفخامة) -->
         <div id="welcomeScreen">
             <div></div>
             <div>
                 <div class="welcome-badge-box">✨ SANAD PLATFORM</div>
-                <div class="welcome-title-main">Sanad</div>
-                <div style="color: #ffffff; font-size: 12.5px; margin-top: 12px; font-weight: 700; letter-spacing: 1px;">منصة الرياضيات المتطورة مع أ. أحمد عبد العليم</div>
+                <div class="welcome-title-main" id="typedWelcomeLogo"></div>
+                <div style="color: #ffffff; font-size: 12.5px; margin-top: 14px; font-weight: 700; letter-spacing: 1px;">منصة الرياضيات المتطورة مع أ. أحمد عبد العليم</div>
             </div>
             <div><div class="bottom-line"></div></div>
         </div>
 
         <!-- واجهة الاستقبال -->
-        <div id="mainScreen" class="screen active">
+        <div id="mainScreen" class="screen">
             <div class="top-status-bar">
                 <div class="logo-circle">S</div>
                 <div style="font-size: 10px; color: #cbd5e1;" id="liveClock1">12:10 ص</div>
@@ -942,9 +930,7 @@
                 <h2 class="hero-title">منصة الرياضيات المتطورة</h2>
                 <div class="teacher-signature-box">Mr. Ahmad Abdelaleem</div>
                 
-                <p class="hero-desc">
-                    حيث تحويل المعادلات المعقدة إلى متعة بصرية، وتبسيط أفكار الرياضيات لبناء عقل هندسي مبدع.
-                </p>
+                <p class="hero-desc">حيث تحويل المعادلات المعقدة إلى متعة بصرية، وتبسيط أفكار الرياضيات لبناء عقل هندسي مبدع.</p>
             </div>
 
             <div class="hero-buttons">
@@ -1042,7 +1028,7 @@
             <div class="bottom-line"></div>
         </div>
 
-        <!-- شاشة عرض المحاضرات -->
+        <!-- شاشة المحاضرات -->
         <div id="lecturesScreen" class="screen">
             <div class="top-status-bar">
                 <div class="logo-circle" style="cursor: pointer;" onclick="navigate('dashboard')" title="رجوع">↩</div>
@@ -1052,9 +1038,7 @@
                 </div>
             </div>
 
-            <div class="lectures-body" id="lecturesContainer">
-                <!-- الحصص تولد هنا -->
-            </div>
+            <div class="lectures-body" id="lecturesContainer"></div>
 
             <div class="bottom-line"></div>
         </div>
@@ -1062,7 +1046,6 @@
     </div>
 
     <script>
-        // مصفوفة الحصص وأسئلة اختبار التركيز
         const lecturesData = [
             {
                 id: 1,
@@ -1103,7 +1086,6 @@
             }
         ];
 
-        // اختبارات شاملة لكل مرحلة
         const comprehensiveQuizzes = {
             "أولى ثانوي": [
                 { qId: 101, text: "سؤال شامل 1: مدى الدالة الثابتة د(س) = 5 هو:", options: ["{5}", "ح", "صفر", "فترة مفتوحة"], correct: 0 },
@@ -1120,27 +1102,44 @@
         let currentStudentGrade = '';
         let studentAnswers = {};
 
-        // عند فتح الصفحة، التحقق إذا كان الطالب مسجل مسبقاً
         window.addEventListener('DOMContentLoaded', () => {
-            typeLogo();
+            typeWelcomeLogo();
+            
+            // إخفاء شاشة الترحيب أوتوماتيكياً والانتقال للرئيسية أو لوحة التحكم بعد 3.8 ثانية
             setTimeout(() => {
-                document.getElementById('welcomeScreen').classList.add('hide');
-            }, 3000);
+                const welcomeEl = document.getElementById('welcomeScreen');
+                if(welcomeEl) {
+                    welcomeEl.classList.add('hide');
+                }
+                
+                const savedName = localStorage.getItem('sanad_student_name');
+                const savedGrade = localStorage.getItem('sanad_student_grade');
 
-            const savedName = localStorage.getItem('sanad_student_name');
-            const savedGrade = localStorage.getItem('sanad_student_grade');
-
-            if (savedName && savedGrade) {
-                document.getElementById('displayName').innerText = savedName;
-                document.getElementById('displayGrade').innerText = savedGrade;
-                currentStudentGrade = savedGrade;
-                navigate('dashboard');
-            }
+                if (savedName && savedGrade) {
+                    document.getElementById('displayName').innerText = savedName;
+                    document.getElementById('displayGrade').innerText = savedGrade;
+                    currentStudentGrade = savedGrade;
+                    navigate('dashboard');
+                } else {
+                    navigate('main');
+                }
+            }, 3800);
         });
 
-        // تأثير ظهور اسم M Ahmad عند اللمس في أي مكان
+        // كتابة اسم Sanad حرف بحرف في شاشة الترحيب
+        const welcomeLogoText = "Sanad";
+        const typedWelcomeElement = document.getElementById('typedWelcomeLogo');
+        let welcomeCharIndex = 0;
+
+        function typeWelcomeLogo() {
+            if (typedWelcomeElement && welcomeCharIndex < welcomeLogoText.length) {
+                typedWelcomeElement.textContent += welcomeLogoText.charAt(welcomeCharIndex);
+                welcomeCharIndex++;
+                setTimeout(typeWelcomeLogo, 220);
+            }
+        }
+
         function showTouchEffect(event) {
-            // تجاهل لو اللمسة على أزرار أو مدخلات عشان ما تزعجش المستخدم
             if (event.target.tagName === 'BUTTON' || event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
 
             const x = event.clientX;
@@ -1156,7 +1155,6 @@
             setTimeout(() => span.remove(), 900);
         }
 
-        // توزيع الفقاعات على أطراف الشاشة فقط لتكون رايقة في المنتصف
         const symbols = ['∫', '∑', 'π', '√', '∞', 'Δ', 'θ', 'ƒ(x)', 'sin', 'cos', '±', 'x²'];
         const mathBg = document.getElementById('mathBg');
         
@@ -1168,25 +1166,12 @@
             const size = Math.floor(Math.random() * 14) + 24;
             bubble.style.width = size + 'px';
             bubble.style.height = size + 'px';
-            // جعل الفقاعات تظهر على الأطراف يمين ويسار فقط
             const isLeft = Math.random() > 0.5;
-            bubble.style.left = isLeft ? (Math.random() * 20) + '%' : (Math.random() * 20 + 75) + '%';
+            bubble.style.left = isLeft ? (Math.random() * 18) + '%' : (Math.random() * 18 + 78) + '%';
             bubble.style.animationDuration = (Math.random() * 8 + 6) + 's';
             bubble.style.animationDelay = (Math.random() * 5) + 's';
             
             mathBg.appendChild(bubble);
-        }
-
-        const logoText = "Sanad";
-        const typedLogoElement = document.getElementById('typedLogo');
-        let charIndex = 0;
-
-        function typeLogo() {
-            if (charIndex < logoText.length) {
-                typedLogoElement.textContent += logoText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeLogo, 180);
-            }
         }
 
         function goToAuth() {
@@ -1194,11 +1179,9 @@
             document.getElementById('authScreen').classList.add('active');
         }
 
-        let selectedGradeText = 'الصف غير محدد';
         function selectGrade(element, gradeName) {
             document.querySelectorAll('.grade-btn').forEach(btn => btn.classList.remove('selected'));
             element.classList.add('selected');
-            selectedGradeText = gradeName;
             currentStudentGrade = gradeName;
         }
 
@@ -1219,7 +1202,6 @@
             }
         }
 
-        // حفظ تسجيل الدخول في LocalStorage
         function handleLogin(event) {
             event.preventDefault();
             const name = document.getElementById('studentName').value;
@@ -1229,8 +1211,7 @@
 
                 document.getElementById('displayName').innerText = name;
                 document.getElementById('displayGrade').innerText = currentStudentGrade;
-                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-                document.getElementById('dashboardScreen').classList.add('active');
+                navigate('dashboard');
             } else {
                 alert('الرجاء كتابة الاسم واختيار المرحلة الدراسية!');
             }
@@ -1239,8 +1220,7 @@
         function logout() {
             localStorage.removeItem('sanad_student_name');
             localStorage.removeItem('sanad_student_grade');
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('mainScreen').classList.add('active');
+            navigate('main');
             document.getElementById('studentName').value = '';
             document.getElementById('studentPhone').value = '';
             document.querySelectorAll('.grade-btn').forEach(btn => btn.classList.remove('selected'));
@@ -1287,7 +1267,6 @@
             });
         }
 
-        // فتح نافذة اختبار التركيز
         function openQuizModal(lectureId) {
             const lecture = lecturesData.find(l => l.id === lectureId);
             document.getElementById('modalLectureTitle').innerText = "اختبار التركيز: " + lecture.title;
@@ -1323,7 +1302,6 @@
             document.getElementById('quizModalOverlay').style.display = 'flex';
         }
 
-        // فتح نافذة الاختبارات الشاملة
         function openComprehensiveQuiz() {
             const list = comprehensiveQuizzes[currentStudentGrade] || [];
             if (list.length === 0) {
@@ -1436,7 +1414,6 @@
             document.getElementById('resultPopupOverlay').style.display = 'none';
         }
 
-        // إبداء سؤال للمستر
         function openQuestionModal(event) {
             event.stopPropagation();
             if (!localStorage.getItem('sanad_student_name')) {
