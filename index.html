@@ -26,7 +26,7 @@
             padding: 10px 0;
         }
 
-        /* خلفية فقاعات رموز الرياضيات */
+        /* خلفية فقاعات رموز الرياضيات (موزعة على الأطراف لعدم إزعاج المحتوى) */
         .math-bg {
             position: fixed;
             top: 0;
@@ -40,32 +40,49 @@
 
         .math-bubble {
             position: absolute;
-            background: radial-gradient(circle, rgba(234, 179, 8, 0.22) 0%, rgba(202, 138, 4, 0.06) 70%);
-            border: 1px solid rgba(234, 179, 8, 0.4);
+            background: radial-gradient(circle, rgba(234, 179, 8, 0.18) 0%, rgba(202, 138, 4, 0.04) 70%);
+            border: 1px solid rgba(234, 179, 8, 0.3);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #facc15;
+            color: rgba(250, 204, 21, 0.7);
             font-weight: 900;
-            box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
             animation: floatBubble linear infinite;
         }
 
         @keyframes floatBubble {
             0% { transform: translateY(105vh) scale(0.8); opacity: 0; }
-            20% { opacity: 0.9; }
-            80% { opacity: 0.9; }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.7; }
             100% { transform: translateY(-15vh) scale(1.2); opacity: 0; }
+        }
+
+        /* تأثير ظهور اسم M Ahmad عند اللمس في أي مكان */
+        .touch-effect {
+            position: fixed;
+            color: #facc15;
+            font-size: 15px;
+            font-weight: 900;
+            pointer-events: none;
+            z-index: 9999;
+            text-shadow: 0 0 12px rgba(250, 204, 21, 0.8);
+            animation: fadeUpTouch 0.9s ease forwards;
+        }
+
+        @keyframes fadeUpTouch {
+            0% { transform: translateY(0) scale(0.6); opacity: 1; }
+            100% { transform: translateY(-45px) scale(1.2); opacity: 0; }
         }
 
         /* حاوية الهاتف المتكيفة تماماً */
         .phone-frame {
             width: 100%;
             max-width: 400px;
-            background: linear-gradient(135deg, rgba(15, 14, 19, 0.92) 0%, rgba(23, 18, 6, 0.92) 100%);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.95);
+            background: linear-gradient(135deg, rgba(15, 14, 19, 0.95) 0%, rgba(23, 18, 6, 0.95) 100%);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 45px rgba(0, 0, 0, 0.95);
             border-radius: 0;
             overflow: hidden;
             border: none;
@@ -100,7 +117,7 @@
             display: flex;
         }
 
-        /* 1. شاشة الترحيب الأولى */
+        /* 1. شاشة الترحيب الأولى (كلمة Sanad كبرى وتتنفس توهجاً) */
         #welcomeScreen {
             background-color: #050507;
             justify-content: center;
@@ -123,40 +140,30 @@
         }
 
         .welcome-badge-box {
-            border: 1px solid rgba(234, 179, 8, 0.4);
-            padding: 6px 18px;
+            border: 1px solid rgba(234, 179, 8, 0.5);
+            padding: 6px 20px;
             border-radius: 30px;
             display: inline-block;
-            color: #eab308;
-            font-size: 11px;
-            letter-spacing: 2px;
-            background: rgba(234, 179, 8, 0.05);
-            margin-bottom: 12px;
-            opacity: 0;
-            animation: fadeInBadge 0.8s ease forwards 0.3s;
-        }
-
-        @keyframes fadeInBadge {
-            to { opacity: 1; }
+            color: #facc15;
+            font-size: 12px;
+            letter-spacing: 3px;
+            background: rgba(234, 179, 8, 0.08);
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
         }
 
         .welcome-title-main {
-            font-size: 42px;
+            font-size: 52px;
             font-weight: 900;
             color: #facc15;
-            letter-spacing: 3px;
-            text-shadow: 0 0 30px rgba(234, 179, 8, 0.6);
-            display: inline-block;
-            border-left: 3px solid #facc15;
-            padding-left: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: blinkCursor 0.7s infinite;
+            letter-spacing: 4px;
+            text-shadow: 0 0 35px rgba(234, 179, 8, 0.8), 0 0 15px rgba(250, 204, 21, 0.5);
+            animation: sanadBreathe 2s infinite alternate;
         }
 
-        @keyframes blinkCursor {
-            0%, 100% { border-color: transparent; }
-            50% { border-color: #facc15; }
+        @keyframes sanadBreathe {
+            0% { transform: scale(0.96); text-shadow: 0 0 15px rgba(234, 179, 8, 0.5); }
+            100% { transform: scale(1.04); text-shadow: 0 0 40px rgba(250, 204, 21, 0.9), 0 0 20px rgba(234, 179, 8, 0.7); }
         }
 
         /* الشريط العلوي */
@@ -223,47 +230,49 @@
         }
 
         .glowing-welcome {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
             color: #fef08a;
             text-transform: uppercase;
             margin-bottom: 4px;
         }
 
         .glowing-sanad {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 900;
             color: #fff;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(234, 179, 8, 0.8), 0 0 20px rgba(234, 179, 8, 0.6);
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(234, 179, 8, 0.9), 0 0 25px rgba(234, 179, 8, 0.6);
         }
 
         .hero-title {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 900;
             color: #fff;
             margin-bottom: 6px;
         }
 
         .teacher-signature-box {
-            background: rgba(234, 179, 8, 0.05);
-            border: 1px solid rgba(234, 179, 8, 0.3);
-            padding: 6px 14px;
+            background: rgba(234, 179, 8, 0.08);
+            border: 1px solid rgba(234, 179, 8, 0.4);
+            padding: 6px 16px;
             border-radius: 8px;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 900;
             color: #facc15;
             margin-bottom: 12px;
+            box-shadow: 0 0 10px rgba(234, 179, 8, 0.2);
         }
 
         .hero-desc {
-            color: #9ca3af;
-            font-size: 11.5px;
-            line-height: 1.6;
+            color: #e2e8f0;
+            font-size: 12px;
+            line-height: 1.7;
             padding: 0 5px;
             margin-bottom: 15px;
+            font-weight: 500;
         }
 
         .hero-buttons {
@@ -287,13 +296,13 @@
             background: linear-gradient(135deg, #facc15, #ca8a04);
             color: #000;
             border: none;
-            box-shadow: 0 4px 10px rgba(234, 179, 8, 0.3);
+            box-shadow: 0 4px 12px rgba(234, 179, 8, 0.4);
         }
 
         .btn-login {
             background: rgba(255, 255, 255, 0.04);
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         /* 3. شاشة إدخال البيانات واختيار المرحلة */
@@ -313,8 +322,8 @@
         }
 
         .auth-subtitle {
-            color: #9ca3af;
-            font-size: 11px;
+            color: #cbd5e1;
+            font-size: 11.5px;
             margin-bottom: 14px;
         }
 
@@ -326,8 +335,8 @@
         .input-group input {
             width: 100%;
             padding: 11px 12px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 8px;
             color: #fff;
             font-size: 12px;
@@ -336,8 +345,8 @@
 
         .grades-selection-label {
             text-align: right;
-            font-size: 11px;
-            color: #eab308;
+            font-size: 11.5px;
+            color: #facc15;
             margin-bottom: 6px;
             font-weight: 700;
         }
@@ -354,7 +363,7 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 8px;
             padding: 10px 4px;
-            color: #ccc;
+            color: #cbd5e1;
             font-size: 11.5px;
             font-weight: 700;
             cursor: pointer;
@@ -366,7 +375,7 @@
             background: rgba(234, 179, 8, 0.2);
             border-color: #facc15;
             color: #facc15;
-            box-shadow: 0 0 8px rgba(234, 179, 8, 0.4);
+            box-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
         }
 
         .btn-submit {
@@ -389,8 +398,8 @@
         }
 
         .student-welcome-card {
-            background: rgba(234, 179, 8, 0.04);
-            border: 1px solid rgba(234, 179, 8, 0.25);
+            background: rgba(234, 179, 8, 0.05);
+            border: 1px solid rgba(234, 179, 8, 0.3);
             padding: 12px;
             border-radius: 10px;
             margin-bottom: 15px;
@@ -400,13 +409,13 @@
         .student-name-display {
             color: #facc15;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 14.5px;
             margin-top: 2px;
         }
 
         .selected-grade-tag {
-            font-size: 10.5px;
-            color: #9ca3af;
+            font-size: 11px;
+            color: #cbd5e1;
             margin-top: 2px;
         }
 
@@ -459,8 +468,8 @@
         }
 
         .menu-card-info p {
-            font-size: 10.5px;
-            color: #b4b8c1;
+            font-size: 11px;
+            color: #cbd5e1;
         }
 
         .menu-icon {
@@ -517,8 +526,8 @@
         }
 
         .video-info-box {
-            font-size: 11px;
-            color: #bbb;
+            font-size: 11.5px;
+            color: #e2e8f0;
             margin-bottom: 10px;
             background: rgba(255, 255, 255, 0.03);
             padding: 6px 8px;
@@ -551,8 +560,8 @@
         }
 
         .pdf-info p {
-            font-size: 9px;
-            color: #9ca3af;
+            font-size: 9.5px;
+            color: #cbd5e1;
         }
 
         .pdf-action-btn {
@@ -565,7 +574,7 @@
             font-weight: bold;
         }
 
-        /* زر فتح بابل شيت الواجب الفخم */
+        /* زر فتح اختبار التركيز على المحاضرة */
         .open-quiz-modal-btn {
             width: 100%;
             padding: 11px;
@@ -589,7 +598,7 @@
             box-shadow: 0 0 20px rgba(250, 204, 21, 0.6);
         }
 
-        /* تصميم النافذة المنبثقة (Modal) للبابل شيت */
+        /* تصميم النافذة المنبثقة لاختبار التركيز والشاملة */
         .quiz-modal-overlay {
             position: fixed;
             top: 0;
@@ -710,7 +719,7 @@
             box-shadow: 0 0 15px rgba(234, 179, 8, 0.3);
         }
 
-        /* تصميم نافذة عرض النتيجة المنبثقة الإضافية */
+        /* نافذة النتيجة المنبثقة الفخمة مع الإيموجي */
         .result-popup-overlay {
             position: fixed;
             top: 0;
@@ -776,9 +785,74 @@
             box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
         }
 
+        /* زرار سؤال المستر العائم على الجنب */
+        .floating-question-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, #facc15, #ca8a04);
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            box-shadow: 0 0 20px rgba(250, 204, 21, 0.7);
+            cursor: pointer;
+            z-index: 998;
+            transition: 0.3s;
+            border: 2px solid #fff;
+        }
+
+        .floating-question-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* نافذة إرسال سؤال للمستر */
+        .question-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1001;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .question-modal-card {
+            background: linear-gradient(135deg, #121218, #1a1721);
+            border: 2px solid #facc15;
+            border-radius: 16px;
+            padding: 20px;
+            width: 100%;
+            max-width: 330px;
+            box-shadow: 0 0 30px rgba(250, 204, 21, 0.4);
+        }
+
+        .question-modal-card textarea {
+            width: 100%;
+            height: 90px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(234, 179, 8, 0.4);
+            border-radius: 8px;
+            color: #fff;
+            padding: 10px;
+            font-size: 11.5px;
+            outline: none;
+            resize: none;
+            margin-bottom: 12px;
+        }
+
         .no-lectures {
             text-align: center;
-            color: #9ca3af;
+            color: #cbd5e1;
             font-size: 12px;
             padding: 30px 10px;
         }
@@ -793,20 +867,35 @@
         }
     </style>
 </head>
-<body>
+<body onclick="showTouchEffect(event)">
 
     <div class="math-bg" id="mathBg"></div>
 
-    <!-- نافذة بابل شيت الاختبار المنبثقة -->
+    <!-- زرار عائم ع الجنب لطرح سؤال على المستر -->
+    <div class="floating-question-btn" onclick="openQuestionModal(event)" title="اسأل المستر">
+        💬
+    </div>
+
+    <!-- نافذة إرسال السؤال للمستر -->
+    <div class="question-modal-overlay" id="questionModalOverlay">
+        <div class="question-modal-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div style="color: #facc15; font-weight: 900; font-size: 13px;">💬 اترك سؤالك للمستر أحمد</div>
+                <button onclick="closeQuestionModal(event)" style="background:none; border:none; color:#fff; font-size:16px; cursor:pointer;">✕</button>
+            </div>
+            <textarea id="studentQuestionText" placeholder="اكتب سؤالك في المسألة أو الدرس وسيجيبك المستر قريباً..."></textarea>
+            <button class="submit-quiz-btn" onclick="sendQuestionToTeacher(event)">إرسال السؤال للمستر 🚀</button>
+        </div>
+    </div>
+
+    <!-- نافذة اختبار التركيز أو الاختبارات الشاملة المنبثقة -->
     <div class="quiz-modal-overlay" id="quizModalOverlay">
         <div class="quiz-modal-content">
             <div class="quiz-modal-header">
-                <div class="quiz-modal-title" id="modalLectureTitle">حل واجب البابل شيت</div>
+                <div class="quiz-modal-title" id="modalLectureTitle">اختبار التركيز</div>
                 <button class="close-modal-btn" onclick="closeQuizModal()">✕</button>
             </div>
-            <div class="quiz-modal-body" id="quizModalBody">
-                <!-- الأسئلة تتولد هنا أوتوماتيكياً -->
-            </div>
+            <div class="quiz-modal-body" id="quizModalBody"></div>
         </div>
     </div>
 
@@ -814,7 +903,7 @@
     <div class="result-popup-overlay" id="resultPopupOverlay">
         <div class="result-popup-card">
             <div class="result-emoji" id="resultEmoji">🎉</div>
-            <div class="result-title" id="resultTitle">نتيجة الواجب</div>
+            <div class="result-title" id="resultTitle">النتيجة</div>
             <div class="result-score-text" id="resultScoreText">درجتك هي: 2 من 2</div>
             <button class="close-result-btn" onclick="closeResultPopup()">حسناً، رائع جداً ✨</button>
         </div>
@@ -822,12 +911,13 @@
 
     <div class="phone-frame">
         
-        <!-- شاشة الترحيب -->
+        <!-- شاشة الترحيب (Sanad كبرى وتتنفس توهجاً) -->
         <div id="welcomeScreen">
             <div></div>
             <div>
                 <div class="welcome-badge-box">✨ SANAD PLATFORM</div>
-                <div class="welcome-title-main" id="typedLogo"></div>
+                <div class="welcome-title-main">Sanad</div>
+                <div style="color: #ffffff; font-size: 12.5px; margin-top: 12px; font-weight: 700; letter-spacing: 1px;">منصة الرياضيات المتطورة مع أ. أحمد عبد العليم</div>
             </div>
             <div><div class="bottom-line"></div></div>
         </div>
@@ -836,7 +926,7 @@
         <div id="mainScreen" class="screen active">
             <div class="top-status-bar">
                 <div class="logo-circle">S</div>
-                <div style="font-size: 10px; color: #aaa;" id="liveClock1">12:10 ص</div>
+                <div style="font-size: 10px; color: #cbd5e1;" id="liveClock1">12:10 ص</div>
                 <div class="nav-arrows">
                     <button class="nav-btn" onclick="navigate('welcome')" title="السابق">◀</button>
                     <button class="nav-btn" onclick="navigate('auth')" title="التالي">▶</button>
@@ -868,7 +958,7 @@
         <div id="authScreen" class="screen">
             <div class="top-status-bar">
                 <div class="logo-circle">S</div>
-                <div style="font-size: 10px; color: #aaa;" id="liveClock2">12:10 ص</div>
+                <div style="font-size: 10px; color: #cbd5e1;" id="liveClock2">12:10 ص</div>
                 <div class="nav-arrows">
                     <button class="nav-btn" onclick="navigate('main')" title="السابق">◀</button>
                     <button class="nav-btn" onclick="navigate('dashboard')" title="التالي">▶</button>
@@ -877,7 +967,7 @@
 
             <div class="auth-body">
                 <h2 class="auth-title">تسجيل دخول الطالب</h2>
-                <p class="auth-subtitle">أدخل بياناتك واختر مرحلتك الدراسية</p>
+                <p class="auth-subtitle">أدخل بياناتك واختر مرحلتك الدراسية لمرة واحدة</p>
                 
                 <form onsubmit="handleLogin(event)">
                     <div class="input-group">
@@ -897,7 +987,7 @@
                         <div class="grade-btn" onclick="selectGrade(this, 'ثالثة ثانوي')">ثالثة ثانوي</div>
                     </div>
 
-                    <button type="submit" class="btn-submit">دخول للمنصة ➔</button>
+                    <button type="submit" class="btn-submit">دخول للمنصة وحفظ الحساب ➔</button>
                 </form>
             </div>
 
@@ -907,8 +997,8 @@
         <!-- لوحة التحكم -->
         <div id="dashboardScreen" class="screen">
             <div class="top-status-bar">
-                <div class="logo-circle" style="cursor: pointer;" onclick="logout()" title="خروج">🚪</div>
-                <div style="font-size: 10px; color: #eab308; font-weight: bold;">أ. أحمد عبد العليم</div>
+                <div class="logo-circle" style="cursor: pointer;" onclick="logout()" title="تسجيل خروج">🚪</div>
+                <div style="font-size: 10px; color: #facc15; font-weight: bold;">أ. أحمد عبد العليم</div>
                 <div class="nav-arrows">
                     <button class="nav-btn" onclick="navigate('auth')" title="السابق">◀</button>
                     <button class="nav-btn" onclick="navigate('main')" title="الرئيسية">⌂</button>
@@ -917,7 +1007,7 @@
 
             <div class="dashboard-body">
                 <div class="student-welcome-card">
-                    <p style="font-size: 10.5px; color: #9ca3af;">أهلاً بك يا بطل:</p>
+                    <p style="font-size: 10.5px; color: #cbd5e1;">أهلاً بك يا بطل:</p>
                     <div class="student-name-display" id="displayName">اسم الطالب هنا</div>
                     <div class="selected-grade-tag" id="displayGrade">المرحلة الدراسية</div>
                 </div>
@@ -926,23 +1016,23 @@
                     <div class="menu-card" onclick="navigate('lectures')">
                         <div class="menu-card-info">
                             <h3>المحاضرات والشروحات</h3>
-                            <p>شاهد الحصص وحل واجب البابل شيت الفوري</p>
+                            <p>شاهد الحصص واختبر تركيزك فوراً</p>
                         </div>
                         <div class="menu-icon">📚</div>
                     </div>
 
-                    <div class="menu-card" onclick="alert('جاري فتح ملفات الواجبات الإضافية...')">
+                    <div class="menu-card" onclick="alert('جاري فتح قسم الواجبات المنزلية والبابل شيت الأسبوعي...')">
                         <div class="menu-card-info">
                             <h3>الواجبات المنزلية</h3>
-                            <p>تابع وحل التمارين والتدريبات الأسبوعية</p>
+                            <p>حل التمارين والتدريبات بأسلوب البابل شيت</p>
                         </div>
                         <div class="menu-icon">📝</div>
                     </div>
 
-                    <div class="menu-card" onclick="alert('جاري تجهيز الاختبارات الشاملة (Quizzes)...')">
+                    <div class="menu-card" onclick="openComprehensiveQuiz()">
                         <div class="menu-card-info">
                             <h3>الاختبارات الشاملة</h3>
-                            <p>اختبر مستواك واكشف مدى استيعابك للمنهج</p>
+                            <p>اختبر مستواك بشيت شامل لمدى استيعابك للمنهج</p>
                         </div>
                         <div class="menu-icon">⚡</div>
                     </div>
@@ -956,7 +1046,7 @@
         <div id="lecturesScreen" class="screen">
             <div class="top-status-bar">
                 <div class="logo-circle" style="cursor: pointer;" onclick="navigate('dashboard')" title="رجوع">↩</div>
-                <div style="font-size: 10px; color: #eab308; font-weight: bold;">المحاضرات والواجب</div>
+                <div style="font-size: 10px; color: #facc15; font-weight: bold;">المحاضرات واختبار التركيز</div>
                 <div class="nav-arrows">
                     <button class="nav-btn" onclick="navigate('dashboard')" title="لوحة التحكم">⌂</button>
                 </div>
@@ -972,7 +1062,7 @@
     </div>
 
     <script>
-        // مصفوفة الحصص وأسئلة البابل شيت
+        // مصفوفة الحصص وأسئلة اختبار التركيز
         const lecturesData = [
             {
                 id: 1,
@@ -983,18 +1073,8 @@
                 pdfTitle: "ملف الشرح والواجب (PDF)",
                 pdfLink: "#",
                 questions: [
-                    {
-                        qId: 1,
-                        text: "1. مجموع قياسات زوايا المثلث الداخلة يساوي:",
-                        options: ["90 درجة", "180 درجة", "360 درجة", "270 درجة"],
-                        correct: 1
-                    },
-                    {
-                        qId: 2,
-                        text: "2. إذا كان س + 3 = 7، فإن قيمة س تساوي:",
-                        options: ["2", "3", "4", "5"],
-                        correct: 2
-                    }
+                    { qId: 1, text: "1. مجموع قياسات زوايا المثلث الداخلة يساوي:", options: ["90 درجة", "180 درجة", "360 درجة", "270 درجة"], correct: 1 },
+                    { qId: 2, text: "2. إذا كان س + 3 = 7، فإن قيمة س تساوي:", options: ["2", "3", "4", "5"], correct: 2 }
                 ]
             },
             {
@@ -1006,12 +1086,7 @@
                 pdfTitle: "ملف الشرح والواجب (PDF)",
                 pdfLink: "#",
                 questions: [
-                    {
-                        qId: 1,
-                        text: "1. جا(90 - س) تساوي:",
-                        options: ["جتا س", "ظا س", "-جا س", "-جتا س"],
-                        correct: 0
-                    }
+                    { qId: 1, text: "1. جا(90 - س) تساوي:", options: ["جتا س", "ظا س", "-جا س", "-جتا س"], correct: 0 }
                 ]
             },
             {
@@ -1023,176 +1098,81 @@
                 pdfTitle: "ملف الشرح والواجب (PDF)",
                 pdfLink: "#",
                 questions: [
-                    {
-                        qId: 1,
-                        text: "1. مشتقة الدالة د(س) = س³ هي:",
-                        options: ["س²", "3س²", "3س", "6س"],
-                        correct: 1
-                    }
+                    { qId: 1, text: "1. مشتقة الدالة د(س) = س³ هي:", options: ["س²", "3س²", "3س", "6س"], correct: 1 }
                 ]
             }
         ];
 
+        // اختبارات شاملة لكل مرحلة
+        const comprehensiveQuizzes = {
+            "أولى ثانوي": [
+                { qId: 101, text: "سؤال شامل 1: مدى الدالة الثابتة د(س) = 5 هو:", options: ["{5}", "ح", "صفر", "فترة مفتوحة"], correct: 0 },
+                { qId: 102, text: "سؤال شامل 2: ابسط شكل للعدد التخيلي ت^4 يساوي:", options: ["1", "-1", "ت", "-ت"], correct: 0 }
+            ],
+            "ثانية ثانوي": [
+                { qId: 201, text: "سؤال شامل 1: مجال الدالة د(س) = 1 / (س-2) هو:", options: ["ح - {2}", "ح", "{2}", "فترة موجبة"], correct: 0 }
+            ],
+            "ثالثة ثانوي": [
+                { qId: 301, text: "سؤال شامل 1: النهاية العظمى المحلية للدالة د(س) = -س² + 4س هي عند س =", options: ["2", "0", "-2", "4"], correct: 0 }
+            ]
+        };
+
         let currentStudentGrade = '';
         let studentAnswers = {};
 
-        function loadLecturesForStudent() {
-            const container = document.getElementById('lecturesContainer');
-            container.innerHTML = "";
-
-            const filteredLectures = lecturesData.filter(item => item.grade === currentStudentGrade);
-
-            if (filteredLectures.length === 0) {
-                container.innerHTML = `<div class="no-lectures">لا توجد محاضرات منشورة لهذه المرحلة حتى الآن، انتظرنا قريباً! 📚</div>`;
-                return;
-            }
-
-            filteredLectures.forEach((lecture) => {
-                const box = document.createElement('div');
-                box.className = 'lecture-item-box';
-                
-                box.innerHTML = `
-                    <div class="section-title">${lecture.title}</div>
-                    <div class="video-container">
-                        <iframe src="${lecture.videoEmbed}" title="شرح الحصة" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info-box">
-                        <strong>شرح الأستاذ أحمد:</strong> ${lecture.desc}
-                    </div>
-                    <a href="${lecture.pdfLink}" target="_blank" class="pdf-card">
-                        <div class="pdf-info">
-                           <h4>${lecture.pdfTitle}</h4>
-                           <p>انقر للتحميل المباشر للحل من كتابك</p>
-                        </div>
-                        <div class="pdf-action-btn">تحميل ⬇</div>
-                    </a>
-
-                    <!-- زرار فخم يفتح نافذة بابل شيت الواجب -->
-                    <button class="open-quiz-modal-btn" onclick="openQuizModal(${lecture.id})">
-                        📝 فتح ورقة بابل شيت الواجب التفاعلي
-                    </button>
-                `;
-                container.appendChild(box);
-            });
-        }
-
-        // فتح نافذة البابل شيت المنبثقة
-        function openQuizModal(lectureId) {
-            const lecture = lecturesData.find(l => l.id === lectureId);
-            document.getElementById('modalLectureTitle').innerText = lecture.title;
-            
-            const modalBody = document.getElementById('quizModalBody');
-            modalBody.innerHTML = '';
-
-            let questionsHTML = '';
-            lecture.questions.forEach((q) => {
-                let optionsHTML = '';
-                q.options.forEach((opt, optIndex) => {
-                    // تحقق إذا كان الطالب قد اختار الإجابة دي قبل كده عشان تفضل منورة
-                    const isSelected = studentAnswers[lectureId] && studentAnswers[lectureId][q.qId] === optIndex ? 'selected' : '';
-                    optionsHTML += `
-                        <button type="button" class="option-btn ${isSelected}" onclick="selectOption(${lectureId}, ${q.qId}, ${optIndex}, this)">
-                            ${opt}
-                        </button>
-                    `;
-                });
-
-                questionsHTML += `
-                    <div class="question-item">
-                        <div class="question-text">${q.text}</div>
-                        <div class="options-grid">${optionsHTML}</div>
-                    </div>
-                `;
-            });
-
-            questionsHTML += `
-                <button class="submit-quiz-btn" onclick="submitQuiz(${lectureId})">تصحيح الواجب وإرسال النتيجة ⚡</button>
-            `;
-
-            modalBody.innerHTML = questionsHTML;
-            document.getElementById('quizModalOverlay').style.display = 'flex';
-        }
-
-        function closeQuizModal() {
-            document.getElementById('quizModalOverlay').style.display = 'none';
-        }
-
-        // اختيار الإجابة
-        function selectOption(lectureId, qId, optIndex, btnElement) {
-            const parentGrid = btnElement.parentElement;
-            parentGrid.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-            btnElement.classList.add('selected');
-
-            if (!studentAnswers[lectureId]) {
-                studentAnswers[lectureId] = {};
-            }
-            studentAnswers[lectureId][qId] = optIndex;
-        }
-
-        // التصحيح الفوري وعرض نافذة النتيجة المزودة بالإيموجي
-        function submitQuiz(lectureId) {
-            const lecture = lecturesData.find(l => l.id === lectureId);
-            const userAns = studentAnswers[lectureId] || {};
-            let score = 0;
-            let total = lecture.questions.length;
-
-            lecture.questions.forEach(q => {
-                if (userAns[q.qId] === q.correct) {
-                    score++;
-                }
-            });
-
-            // قفل نافذة الأسئلة أولاً
-            closeQuizModal();
-
-            // تجهيز بيانات نافذة النتيجة بالإيموجي المناسب
-            const emojiEl = document.getElementById('resultEmoji');
-            const titleEl = document.getElementById('resultTitle');
-            const textEl = document.getElementById('resultScoreText');
-
-            if (score === total) {
-                emojiEl.innerText = "🏆🎉";
-                titleEl.innerText = "أنت بطل أسطوري!";
-                textEl.innerHTML = `درجتك النهائية بكل تفوق: <b>${score} / ${total}</b><br>استمر في هذا الإبداع المذهل!`;
-            } else if (score > 0) {
-                emojiEl.innerText = "🌟💪";
-                titleEl.innerText = "أداء طيب جداً!";
-                textEl.innerHTML = `درجتك هي: <b>${score} من ${total}</b><br>قريب جداً من القمة، راجع الأخطاء وكرر المحاولة!`;
-            } else {
-                emojiEl.innerText = "💡📉";
-                titleEl.innerText = "محاولة لا بأس بها";
-                textEl.innerHTML = `درجتك هي: <b>${score} من ${total}</b><br>راجع فيديو الشرح مرة تانية وهتقفلها المرة الجاية!`;
-            }
-
-            // إظهار نافذة النتيجة المنبثقة الفخمة
-            document.getElementById('resultPopupOverlay').style.display = 'flex';
-        }
-
-        function closeResultPopup() {
-            document.getElementById('resultPopupOverlay').style.display = 'none';
-        }
-
+        // عند فتح الصفحة، التحقق إذا كان الطالب مسجل مسبقاً
         window.addEventListener('DOMContentLoaded', () => {
             typeLogo();
             setTimeout(() => {
                 document.getElementById('welcomeScreen').classList.add('hide');
-            }, 3500);
+            }, 3000);
+
+            const savedName = localStorage.getItem('sanad_student_name');
+            const savedGrade = localStorage.getItem('sanad_student_grade');
+
+            if (savedName && savedGrade) {
+                document.getElementById('displayName').innerText = savedName;
+                document.getElementById('displayGrade').innerText = savedGrade;
+                currentStudentGrade = savedGrade;
+                navigate('dashboard');
+            }
         });
 
-        const symbols = ['∫', '∑', 'π', '√', '∞', 'Δ', 'θ', 'ƒ(x)', 'sin', 'cos', '123', '±', 'x²', 'dy/dx'];
+        // تأثير ظهور اسم M Ahmad عند اللمس في أي مكان
+        function showTouchEffect(event) {
+            // تجاهل لو اللمسة على أزرار أو مدخلات عشان ما تزعجش المستخدم
+            if (event.target.tagName === 'BUTTON' || event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
+
+            const x = event.clientX;
+            const y = event.clientY;
+
+            const span = document.createElement('div');
+            span.className = 'touch-effect';
+            span.innerText = 'M Ahmad';
+            span.style.left = x + 'px';
+            span.style.top = y + 'px';
+
+            document.body.appendChild(span);
+            setTimeout(() => span.remove(), 900);
+        }
+
+        // توزيع الفقاعات على أطراف الشاشة فقط لتكون رايقة في المنتصف
+        const symbols = ['∫', '∑', 'π', '√', '∞', 'Δ', 'θ', 'ƒ(x)', 'sin', 'cos', '±', 'x²'];
         const mathBg = document.getElementById('mathBg');
         
-        for (let i = 0; i < 22; i++) {
+        for (let i = 0; i < 16; i++) {
             const bubble = document.createElement('div');
             bubble.className = 'math-bubble';
             bubble.innerText = symbols[Math.floor(Math.random() * symbols.length)];
             
-            const size = Math.floor(Math.random() * 16) + 24;
+            const size = Math.floor(Math.random() * 14) + 24;
             bubble.style.width = size + 'px';
             bubble.style.height = size + 'px';
-            bubble.style.left = (Math.random() * 95) + '%';
-            bubble.style.animationDuration = (Math.random() * 7 + 5) + 's';
-            bubble.style.animationDelay = (Math.random() * 6) + 's';
+            // جعل الفقاعات تظهر على الأطراف يمين ويسار فقط
+            const isLeft = Math.random() > 0.5;
+            bubble.style.left = isLeft ? (Math.random() * 20) + '%' : (Math.random() * 20 + 75) + '%';
+            bubble.style.animationDuration = (Math.random() * 8 + 6) + 's';
+            bubble.style.animationDelay = (Math.random() * 5) + 's';
             
             mathBg.appendChild(bubble);
         }
@@ -1205,7 +1185,7 @@
             if (charIndex < logoText.length) {
                 typedLogoElement.textContent += logoText.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeLogo, 200);
+                setTimeout(typeLogo, 180);
             }
         }
 
@@ -1239,18 +1219,26 @@
             }
         }
 
+        // حفظ تسجيل الدخول في LocalStorage
         function handleLogin(event) {
             event.preventDefault();
             const name = document.getElementById('studentName').value;
-            if(name.trim() !== "") {
+            if(name.trim() !== "" && currentStudentGrade !== '') {
+                localStorage.setItem('sanad_student_name', name);
+                localStorage.setItem('sanad_student_grade', currentStudentGrade);
+
                 document.getElementById('displayName').innerText = name;
-                document.getElementById('displayGrade').innerText = selectedGradeText;
+                document.getElementById('displayGrade').innerText = currentStudentGrade;
                 document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
                 document.getElementById('dashboardScreen').classList.add('active');
+            } else {
+                alert('الرجاء كتابة الاسم واختيار المرحلة الدراسية!');
             }
         }
 
         function logout() {
+            localStorage.removeItem('sanad_student_name');
+            localStorage.removeItem('sanad_student_grade');
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById('mainScreen').classList.add('active');
             document.getElementById('studentName').value = '';
@@ -1258,6 +1246,221 @@
             document.querySelectorAll('.grade-btn').forEach(btn => btn.classList.remove('selected'));
             currentStudentGrade = '';
             studentAnswers = {};
+        }
+
+        function loadLecturesForStudent() {
+            const container = document.getElementById('lecturesContainer');
+            container.innerHTML = "";
+
+            const filteredLectures = lecturesData.filter(item => item.grade === currentStudentGrade);
+
+            if (filteredLectures.length === 0) {
+                container.innerHTML = `<div class="no-lectures">لا توجد محاضرات منشورة لهذه المرحلة حتى الآن، انتظرنا قريباً! 📚</div>`;
+                return;
+            }
+
+            filteredLectures.forEach((lecture) => {
+                const box = document.createElement('div');
+                box.className = 'lecture-item-box';
+                
+                box.innerHTML = `
+                    <div class="section-title">${lecture.title}</div>
+                    <div class="video-container">
+                        <iframe src="${lecture.videoEmbed}" title="شرح الحصة" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info-box">
+                        <strong>شرح الأستاذ أحمد:</strong> ${lecture.desc}
+                    </div>
+                    <a href="${lecture.pdfLink}" target="_blank" class="pdf-card">
+                        <div class="pdf-info">
+                           <h4>${lecture.pdfTitle}</h4>
+                           <p>انقر لتحميل ملف الشرح من كتابك</p>
+                        </div>
+                        <div class="pdf-action-btn">تحميل ⬇</div>
+                    </a>
+
+                    <button class="open-quiz-modal-btn" onclick="openQuizModal(${lecture.id})">
+                        🎯 اختبار التركيز على المحاضرة الفوري
+                    </button>
+                `;
+                container.appendChild(box);
+            });
+        }
+
+        // فتح نافذة اختبار التركيز
+        function openQuizModal(lectureId) {
+            const lecture = lecturesData.find(l => l.id === lectureId);
+            document.getElementById('modalLectureTitle').innerText = "اختبار التركيز: " + lecture.title;
+            
+            const modalBody = document.getElementById('quizModalBody');
+            modalBody.innerHTML = '';
+
+            let questionsHTML = '';
+            lecture.questions.forEach((q) => {
+                let optionsHTML = '';
+                q.options.forEach((opt, optIndex) => {
+                    const isSelected = studentAnswers[lectureId] && studentAnswers[lectureId][q.qId] === optIndex ? 'selected' : '';
+                    optionsHTML += `
+                        <button type="button" class="option-btn ${isSelected}" onclick="selectOption(${lectureId}, ${q.qId}, ${optIndex}, this)">
+                            ${opt}
+                        </button>
+                    `;
+                });
+
+                questionsHTML += `
+                    <div class="question-item">
+                        <div class="question-text">${q.text}</div>
+                        <div class="options-grid">${optionsHTML}</div>
+                    </div>
+                `;
+            });
+
+            questionsHTML += `
+                <button class="submit-quiz-btn" onclick="submitQuiz(${lectureId})">تصحيح الاختبار وإرسال النتيجة ⚡</button>
+            `;
+
+            modalBody.innerHTML = questionsHTML;
+            document.getElementById('quizModalOverlay').style.display = 'flex';
+        }
+
+        // فتح نافذة الاختبارات الشاملة
+        function openComprehensiveQuiz() {
+            const list = comprehensiveQuizzes[currentStudentGrade] || [];
+            if (list.length === 0) {
+                alert('لا توجد اختبارات شاملة متاحة لهذه المرحلة حالياً.');
+                return;
+            }
+
+            document.getElementById('modalLectureTitle').innerText = "⚡ الاختبار الشامل للمنهج (" + currentStudentGrade + ")";
+            const modalBody = document.getElementById('quizModalBody');
+            modalBody.innerHTML = '';
+
+            let questionsHTML = '';
+            list.forEach((q) => {
+                let optionsHTML = '';
+                q.options.forEach((opt, optIndex) => {
+                    const isSelected = studentAnswers['comp_' + q.qId] === optIndex ? 'selected' : '';
+                    optionsHTML += `
+                        <button type="button" class="option-btn ${isSelected}" onclick="selectCompOption(${q.qId}, ${optIndex}, this)">
+                            ${opt}
+                        </button>
+                    `;
+                });
+
+                questionsHTML += `
+                    <div class="question-item">
+                        <div class="question-text">${q.text}</div>
+                        <div class="options-grid">${optionsHTML}</div>
+                    </div>
+                `;
+            });
+
+            questionsHTML += `
+                <button class="submit-quiz-btn" onclick="submitComprehensiveQuiz()">تصحيح الاختبار الشامل ⚡</button>
+            `;
+
+            modalBody.innerHTML = questionsHTML;
+            document.getElementById('quizModalOverlay').style.display = 'flex';
+        }
+
+        function closeQuizModal() {
+            document.getElementById('quizModalOverlay').style.display = 'none';
+        }
+
+        function selectOption(lectureId, qId, optIndex, btnElement) {
+            const parentGrid = btnElement.parentElement;
+            parentGrid.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            btnElement.classList.add('selected');
+
+            if (!studentAnswers[lectureId]) studentAnswers[lectureId] = {};
+            studentAnswers[lectureId][qId] = optIndex;
+        }
+
+        function selectCompOption(qId, optIndex, btnElement) {
+            const parentGrid = btnElement.parentElement;
+            parentGrid.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            btnElement.classList.add('selected');
+            studentAnswers['comp_' + qId] = optIndex;
+        }
+
+        function submitQuiz(lectureId) {
+            const lecture = lecturesData.find(l => l.id === lectureId);
+            const userAns = studentAnswers[lectureId] || {};
+            let score = 0;
+            let total = lecture.questions.length;
+
+            lecture.questions.forEach(q => {
+                if (userAns[q.qId] === q.correct) score++;
+            });
+
+            closeQuizModal();
+            showResultModal(score, total);
+        }
+
+        function submitComprehensiveQuiz() {
+            const list = comprehensiveQuizzes[currentStudentGrade] || [];
+            let score = 0;
+            let total = list.length;
+
+            list.forEach(q => {
+                if (studentAnswers['comp_' + q.qId] === q.correct) score++;
+            });
+
+            closeQuizModal();
+            showResultModal(score, total);
+        }
+
+        function showResultModal(score, total) {
+            const emojiEl = document.getElementById('resultEmoji');
+            const titleEl = document.getElementById('resultTitle');
+            const textEl = document.getElementById('resultScoreText');
+
+            if (score === total) {
+                emojiEl.innerText = "🏆🎉";
+                titleEl.innerText = "أنت بطل أسطوري!";
+                textEl.innerHTML = `درجتك بكل تفوق: <b>${score} / ${total}</b><br>استمر في هذا الإبداع المذهل!`;
+            } else if (score > 0) {
+                emojiEl.innerText = "🌟💪";
+                titleEl.innerText = "أداء طيب جداً!";
+                textEl.innerHTML = `درجتك هي: <b>${score} من ${total}</b><br>قريب جداً من القمة، راجع الأخطاء وكرر المحاولة!`;
+            } else {
+                emojiEl.innerText = "💡📉";
+                titleEl.innerText = "محاولة لا بأس بها";
+                textEl.innerHTML = `درجتك هي: <b>${score} من ${total}</b><br>راجع الشرح مرة تانية وهتقفلها المرة الجاية!`;
+            }
+
+            document.getElementById('resultPopupOverlay').style.display = 'flex';
+        }
+
+        function closeResultPopup() {
+            document.getElementById('resultPopupOverlay').style.display = 'none';
+        }
+
+        // إبداء سؤال للمستر
+        function openQuestionModal(event) {
+            event.stopPropagation();
+            if (!localStorage.getItem('sanad_student_name')) {
+                alert('الرجاء تسجيل الدخول أولاً لتتمكن من إرسال سؤالك للمستر.');
+                return;
+            }
+            document.getElementById('questionModalOverlay').style.display = 'flex';
+        }
+
+        function closeQuestionModal(event) {
+            event.stopPropagation();
+            document.getElementById('questionModalOverlay').style.display = 'none';
+        }
+
+        function sendQuestionToTeacher(event) {
+            event.stopPropagation();
+            const text = document.getElementById('studentQuestionText').value.trim();
+            if (text === '') {
+                alert('الرجاء كتابة السؤال أولاً!');
+                return;
+            }
+            alert('✅ تم إرسال سؤالك بنجاح إلى المستر أحمد عبد العليم وسيرد عليك قريباً!');
+            document.getElementById('studentQuestionText').value = '';
+            document.getElementById('questionModalOverlay').style.display = 'none';
         }
 
         function updateTime() {
